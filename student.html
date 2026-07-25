@@ -5,6 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TOUCH English — makes you visible</title>
 <meta name="description" content="英文不只是考试，而是让你在职场和生活中被看见。16 年 · 16,397+ 学员 · 97.5% 进步率。">
+
+<!-- ===== 分享预览（WhatsApp / FB / Telegram 缩图）=====
+     图片必须是「完整网址」，尺寸建议 1200×630、小于 300KB。
+     换图后 WhatsApp 会记住旧图约 7 天，想马上更新可把 ?v=2 改成 ?v=3 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TOUCH English">
+<meta property="og:title" content="你的英文蜕变 · TOUCH English">
+<meta property="og:description" content="这是顾问为你规划的学习路线：你现在在哪、下一步练什么、未来会变成什么样。">
+<meta property="og:url" content="https://touchenglish.github.io/TOUCH-Register/student.html">
+<meta property="og:image" content="https://touchenglish.github.io/TOUCH-Register/assets/share.png?v=2">
+<meta property="og:image:secure_url" content="https://touchenglish.github.io/TOUCH-Register/assets/share.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="TOUCH English — 你的英文蜕变">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="你的英文蜕变 · TOUCH English">
+<meta name="twitter:description" content="这是顾问为你规划的学习路线：你现在在哪、下一步练什么、未来会变成什么样。">
+<meta name="twitter:image" content="https://touchenglish.github.io/TOUCH-Register/assets/share.png?v=2">
+<meta name="theme-color" content="#15357B">
 <style>
 /* ================= TOKENS ================= */
 :root{
@@ -2453,7 +2474,7 @@ window.__openTimetable=openTimetable;
   if(T){
     html+='<button class="yclass__row yclass__t" id="ytBtn"><span class="yclass__av">'+(T.img?'<img loading="lazy" src="'+T.img+'" alt="" onerror="this.remove()">':'')+'<em>👩‍🏫</em></span>'+
       '<div><span class="yclass__lb"><span class="zh">你的老师</span><span class="en">Your teacher</span></span><b>'+tname(T)+'</b>'+
-      '<i>'+(T.role||'')+(T.rating?(' · ★ '+T.rating):'')+'</i></div><span class="yclass__go">›</span></button>';
+      (T.rating?'<i>\u2605 '+T.rating+'</i>':'')+'</div><span class="yclass__go">\u203a</span></button>';
   }
   /* 时间表按钮（点开弹窗，效果同 console） */
   var TTB=(CONFIG.TIMETABLES||{})[loc];
@@ -2481,13 +2502,13 @@ window.__openTimetable=openTimetable;
       function row(lb,lben,v){return v?('<h4><span class="zh">'+lb+'</span><span class="en">'+lben+'</span></h4><p class="cmod__now">'+v+'</p>'):'';}
       body.innerHTML=
         '<div class="cmod__hd"><span class="tprof__av">'+(T.img?'<img src="'+T.img+'" alt="" onerror="this.remove()">':'')+'<em>👩‍🏫</em></span>'+
-          '<span class="cmod__t"><b>'+tname(T)+'</b><i>'+(T.role||'')+(T.rating?(' · ★ '+T.rating+'/5'):'')+'</i></span></div>'+
+          '<span class="cmod__t"><b>'+tname(T)+'</b>'+(T.rating?'<i>\u2605 '+T.rating+'/5</i>':'')+'</span></div>'+
         (T.quote?'<p class="tprof__q">“'+T.quote+'”</p>':'')+
         row('关于','About',T.about)+
         row('教学风格','Teaching style',T.style)+
         row('学历','Education',T.edu)+
         row('专长','Specialty',T.spec)+
-        (T.mbti?'<p class="tprof__meta">'+T.mbti+(T.mtype?(' · '+T.mtype):'')+(T.joined?(' · <span class="zh">'+T.joined+' 年加入 TOUCH</span><span class="en">joined TOUCH in '+T.joined+'</span>'):'')+'</p>':'');
+        '';
       mod.hidden=false; document.body.classList.add('vlb-open');
     });
   }
