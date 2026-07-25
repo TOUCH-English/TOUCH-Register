@@ -172,6 +172,20 @@ mark::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:8px;ba
   .hero__grid{margin-bottom:0}
 }
 
+/* FAQ: lead line, concern chips */
+.faq__lead{max-width:620px;margin:0 auto 22px;text-align:center;font-size:14px;line-height:1.7;color:var(--ink2)}
+.faqmore{max-width:760px;margin:26px auto 0;text-align:center}
+.faqmore__lb{display:block;font-size:12px;font-weight:800;letter-spacing:.04em;color:var(--mut);margin-bottom:12px}
+.faqmore__chips{display:flex;flex-wrap:wrap;gap:9px;justify-content:center}
+.faqchip{font:inherit;font-size:13px;font-weight:700;color:var(--ink);cursor:pointer;padding:9px 17px;border-radius:999px;
+  background:rgba(255,255,255,.72);border:1px solid rgba(31,120,210,.22);box-shadow:0 8px 20px -16px rgba(21,53,123,.4);transition:.2s}
+.faqchip:hover{border-color:rgba(31,120,210,.5);transform:translateY(-2px)}
+.faqchip.is-on{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 10px 22px -10px rgba(31,120,210,.6)}
+.faq__end{max-width:620px;margin:26px auto 0;text-align:center;font-size:13.5px;color:var(--mut);font-weight:600}
+.faq__end b{color:var(--blue)}
+.qa.is-new{animation:qaIn .4s ease both}
+@keyframes qaIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
 /* ===== 5C framework (ported from console) ===== */
 .fx{position:relative;display:inline-flex;cursor:help;outline:none;vertical-align:middle}
 .fx-tip{position:absolute;top:calc(100% + 10px);left:50%;z-index:60;width:296px;max-width:84vw;text-align:left;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(20px) saturate(1.2);backdrop-filter:blur(20px) saturate(1.2);border:1px solid rgba(255,255,255,.82);box-shadow:0 22px 46px -18px rgba(20,33,50,.42),0 2px 6px rgba(20,33,50,.08),inset 0 1px 0 rgba(255,255,255,.85);opacity:0;visibility:hidden;transform:translate(-50%,-4px);transition:opacity .16s ease,transform .16s ease,visibility .16s;pointer-events:none}
@@ -1384,13 +1398,13 @@ footer{padding:36px 0 46px;text-align:center;font-size:12.5px;color:var(--mut)}
       <span class="eyebrow"><span class="zh">常见问题</span><span class="en">FAQ</span></span>
       <h2><span class="zh">你可能想问</span><span class="en">You might be wondering</span></h2>
     </div>
-    <div class="faq">
-      <div class="qa card"><button class="qa__q"><span class="zh">我基础很差 / 完全零基础，跟得上吗？</span><span class="en">My English is very weak — can I keep up?</span></button><div class="qa__a"><p><span class="zh">可以。报名前先做免费定位测试（60 题 · 60 分钟，不是及格考，只是了解你现在的程度），我们从 Level P1 开始就有零基础班，从发音和最基本的句型带起。你永远和程度相近的同学一班，不会被丢进听不懂的教室。</span><span class="en">Yes. Before enrolling, you take a free placement test (60 questions, 60 minutes — not pass/fail, just to find your level). Our path starts at Level P1 for complete beginners, from pronunciation and basic patterns. You'll always be with learners at your level — never dropped into a class you can't follow.</span></p></div></div>
-      <div class="qa card"><button class="qa__q"><span class="zh">我工作很忙，时间排得进吗？</span><span class="en">I'm busy with work — will the schedule fit?</span></button><div class="qa__a"><p><span class="zh">排得进——因为你不是被绑死在某一堂课。同一个 Level 每周都有多堂课供你选择，这周忙就换下一个时段，时间完全自由。报名后你会拿到明确的时间表，顾问也会和你一起挑最顺的节奏。多数学员本来就是上班族。</span><span class="en">Yes — because you're not locked into one fixed slot. Your level runs multiple classes every week, so if this week is busy, simply pick another session. You'll receive a clear timetable after enrolling, and your advisor helps you find the rhythm that fits. Most of our learners are working adults.</span></p></div></div>
-      <div class="qa card"><button class="qa__q"><span class="zh">多久能看到效果？</span><span class="en">How soon will I see results?</span></button><div class="qa__a"><p><span class="zh">语言不是七天速成，但你不用等一年：多数学员在头 1–2 个月就明显更敢开口，因为每堂课都必须讲。每个 Level 结束有考核和学习报告，进步是白纸黑字看得见的——这也是我们 97.5% 学员进步率的来源。</span><span class="en">Language isn't a 7-day fix — but you won't wait a year either. Most learners speak noticeably more confidently within the first 1–2 months, because every class makes you speak. Each level ends with an assessment and a written report, so progress is visible in black and white — that's where our 97.5% improvement rate comes from.</span></p></div></div>
-      <div class="qa card"><button class="qa__q"><span class="zh">公司可以帮我出钱吗？（HRDC）</span><span class="en">Can my company pay for this? (HRDC)</span></button><div class="qa__a"><p><span class="zh">两种方式。① 公司报销：TOUCH English 是 HRD Corp 认证培训机构，如果你的公司有缴 HRD Corp，培训费用可由公司申请报销，顾问会协助你和 HR 走流程。② 个人助学金：即使公司不出钱，我们也把长期企业培训获得的 HRD Corp 津贴转化为助学金，补贴个人学员——你的顾问可以帮你确认本批助学金是否还能申请。</span><span class="en">Two ways. ① Company claim: TOUCH English is an HRD Corp certified training provider — if your company contributes to HRD Corp, the fee can be claimed, with your advisor guiding you and HR through it. ② Personal study grant: even if your company is not paying, we channel the HRD Corp grant from our corporate training into a study grant for individual learners — your advisor can check whether this batch is still available for you.</span></p></div></div>
-      <div class="qa card"><button class="qa__q"><span class="zh">我怎么确定这适合我，不会白花钱？</span><span class="en">How do I know this is right for me before paying?</span></button><div class="qa__a"><p><span class="zh">因为付费是整个流程的最后一步，不是第一步。在那之前：免费定位测试先确认你的真实程度；顾问按结果建议 Level 和堂数（而不是按最贵的推）；时间表、上课分行、带你的老师都先讲清楚；你也可以先到分行走一趟、看看真实的课堂环境。所有疑问都问完、都确认了，才需要做决定——我们希望你是想清楚才开始的，因为想清楚才开始的学员，才走得完。</span><span class="en">Because paying is the last step of the process, not the first. Before that: a free placement test confirms your real level; your advisor recommends the level and lesson count based on your result (not the most expensive option); the timetable, branch and teacher are all made clear upfront; and you're welcome to visit a centre and see a real class environment first. Only when every question is answered do you decide — we want you to start with clarity, because learners who start with clarity are the ones who finish.</span></p></div></div>
-      <div class="qa card"><button class="qa__q"><span class="zh">报名后什么时候开课？</span><span class="en">When do classes start after I enrol?</span></button><div class="qa__a"><p><span class="zh">完成定位测试和报名后，顾问会为你安排最近一期符合你 Level 的班次，并在开课前和你确认时间表。如果你在意学费，可以顺便问一下本批 HRD Corp 助学金的情况——津贴有余额时报名，是最划算的时间点。</span><span class="en">Once your placement test and enrolment are done, your advisor places you in the next intake for your level and confirms the timetable before classes begin. If the fee matters to you, ask about the current HRD Corp study grant batch — enrolling while the grant lasts is the best-value moment.</span></p></div></div>
+    <p class="faq__lead rv" id="faqLead" hidden></p>
+    <div class="faq" id="faqList"></div>
+    <div class="faqmore rv" id="faqMore" hidden>
+      <span class="faqmore__lb"><span class="zh">还想知道…</span><span class="en">Still wondering about…</span></span>
+      <div class="faqmore__chips" id="faqChips"></div>
+    </div>
+    <p class="faq__end rv" id="faqEnd" hidden></p>
     </div>
   </div>
 </section>
@@ -1586,6 +1600,117 @@ var CONFIG={
   FOUNDED_YEAR:2010,   /* 创办年份：页面上的「X 年经验」会自动依今年推算，不用手动改 */
   CUBE_LIVE_FACES:6,   /* 最多几面自动播放（会依手机流畅度自动收敛；设 0 = 全部用缩略图） */
   CUBE_MIN_FPS:38,     /* 低于这个帧率就停止再加播放器 */
+  /* ===== FAQ 知识库（按顾虑筛选，语气依顾问训练手册：共情 → 学习逻辑 → 课程机制 → 画面；网页版不用反问） =====
+     lv: 该 level 的起手题（-1 = 不限）  ct: 顾虑标签  core: 一定显示 */
+  PAIN_CONCERN:{
+    0:["BUILD","SPEAK_FEAR","GRAMMAR","MEMORY"],
+    1:["BUILD","BUILD","FLOW","GRAMMAR"],
+    2:["WORKPLACE","FLOW","WORKPLACE","CONFIDENCE"],
+    3:["PERSUADE","CONFIDENCE","REACT","PERSUADE"],
+    4:["PERSUADE","REACT","WORKPLACE","REACT"]
+  },
+  FAQ_GROUPS:[
+    {k:"doubt", zh:"会不会学不会", en:"Can I actually do this", ct:["SELF_DOUBT","AGE","MEMORY","SPEAK_FEAR"]},
+    {k:"keep",  zh:"时间与坚持",   en:"Time & keeping it up", ct:["TIME","CONSISTENCY"]},
+    {k:"worth", zh:"值不值得",     en:"Is it worth it",       ct:["VALUE","DURATION","RESULT"]},
+    {k:"system",zh:"老师与系统",   en:"Teachers & system",    ct:["TRUST","GRAMMAR","WORKPLACE"]}
+  ],
+  FAQS:[
+    {id:"value", core:1, lv:-1, ct:["VALUE"],
+     q:{zh:"我怎么确定这适合我，不会白花钱？", en:"How do I know this is right for me?"},
+     a:{zh:"会这样想很正常——大多数人不是怕花钱，是怕花了没用。<br><br>所以在这里，付费是流程的最后一步，不是第一步。定位测试先确认你真实的程度，顾问按结果建议 Level 和堂数（不是按最贵的推），时间表、分行、带你的老师都先讲清楚。<br><br>全部确认了才需要决定——想清楚才开始的学员，才走得完。",
+        en:"That worry is normal — most people aren't afraid of the cost, they're afraid it won't work.<br><br>So here, paying is the last step, not the first. A placement test confirms your real level, your advisor recommends the level and lesson count from that result (not the priciest option), and the timetable, branch and teacher are all clear upfront.<br><br>Only once everything is confirmed do you decide — learners who start with clarity are the ones who finish."}},
+    {id:"time", core:1, lv:-1, ct:["TIME"],
+     q:{zh:"我工作很忙，时间排得进吗？", en:"I'm busy with work — will it fit?"},
+     a:{zh:"上班族本来就是我们大部分的学员，所以课程不是绑死在某一堂。<br><br>成人学习不需要等到生活完全空出来才开始，而是找一个现实、做得到的节奏。同一个 Level 每周有多堂课，这周忙就换下一个时段。<br><br>顾问也会跟你一起挑最顺的时间。忙的时候可以放慢，但记得给自己一个回来的日子——弹性不等于无限期停下。",
+        en:"Working adults are most of our learners, so you're never locked into one fixed slot.<br><br>Adult learning doesn't wait until life is empty — it needs a realistic rhythm you can keep. Your level runs several classes each week, so if this week is packed, take another session.<br><br>Your advisor helps you find the smoothest rhythm. You can slow down when busy — just set a date to come back. Flexible doesn't mean pausing forever."}},
+    {id:"next", core:1, lv:-1, ct:["ENROL"],
+     q:{zh:"确定之后，接下来是什么？", en:"What happens after I decide?"},
+     a:{zh:"流程很短：定位测试 → 顾问跟你确认 Level、堂数和时间表 → 安排最近一期的班。<br><br>开课前你会知道自己在哪个中心、哪一位老师、第一堂课是什么时候，不会有模糊地带。<br><br>如果学费是你在意的部分，顺便问一下本批助学金还在不在——有余额的时候报名，是最划算的时间点。",
+        en:"The process is short: placement test → your advisor confirms your level, lesson count and timetable → you're placed in the next intake.<br><br>Before it starts you'll know your centre, your teacher and your first class date. Nothing vague.<br><br>If the fee matters to you, ask whether this study-grant batch is still open — enrolling while it lasts is the best-value moment."}},
+
+    {id:"lv-p1", lv:0, ct:["SELF_DOUBT","BEGINNER"],
+     q:{zh:"我完全零基础，真的跟得上吗？", en:"I'm a complete beginner — can I keep up?"},
+     a:{zh:"跟得上——因为课程就是为「现在还开不了口」的人设计的。<br><br>基础阶段不会一开始就要你讲长句，而是从图片、动作、简单词汇和短句模仿开始。你先听懂关键词、先敢说一个词，就够了。<br><br>而且你永远和程度相近的同学一班，不会被丢进听不懂的教室。<br><br>就像学游泳——没有人第一天就下深水区，先在浅水区站稳，才游得远。",
+        en:"Yes — because this stage is built for people who can't speak up yet.<br><br>You won't be asked for long sentences on day one. It starts with pictures, gestures, simple words and short phrases to copy. Catching a keyword and saying one word back is enough at the start.<br><br>And you're always placed with learners at your level — never dropped into a class you can't follow.<br><br>Like learning to swim: nobody starts in the deep end."}},
+    {id:"lv-l1", lv:1, ct:["BUILD"],
+     q:{zh:"我认识不少单词，为什么就是讲不出句子？", en:"I know the words — why can't I make sentences?"},
+     a:{zh:"因为「认得单词」和「组得出句子」是两种不同的能力。<br><br>你知道 meeting、problem、customer，但没有人教过你怎么把它们串起来。这不是记性差，是缺了句子的骨架。<br><br>课堂会先给你固定句型（I need to… / I think… because…），你先模仿，再替换内容，最后用同一个结构讲自己的情况。<br><br>就像搭积木——先有底座，才叠得高。",
+        en:"Because knowing words and building sentences are two different skills.<br><br>You know meeting, problem, customer — but nobody taught you how to connect them. That's not poor memory; it's a missing frame.<br><br>Class gives you the frame first (I need to… / I think… because…). You copy it, swap in your own content, then use the same structure for your own situation.<br><br>Like building blocks — you need the base before you can stack."}},
+    {id:"lv-l2", lv:2, ct:["WORKPLACE","BUILD"],
+     q:{zh:"我会讲句子了，为什么别人还是听不懂我？", en:"I can make sentences — why don't people follow me?"},
+     a:{zh:"讲得出句子，是第一步；让人听懂，还要补上「顺序」。<br><br>别人听不懂，通常不是你的英文错了，而是缺了背景、原因或例子——对方需要拼凑，才觉得吃力。<br><br>这一级会训练你先讲重点，再补理由和例子，把短句扩成完整、清楚的说明，并且直接放进职场情境练。<br><br>就像跟同事交代事情——讲清楚顺序的人，别人一次就懂。",
+        en:"Making sentences is step one; being understood needs order.<br><br>Usually it's not that your English is wrong — it's that the context, reason or example is missing, so the listener has to piece it together.<br><br>This level trains you to lead with the point, then add the reason and example — turning short lines into full, clear explanations, practised in real workplace situations.<br><br>Like briefing a colleague: the person who gives it in order gets understood first time."}},
+    {id:"lv-l3", lv:3, ct:["PERSUADE","WORKPLACE"],
+     q:{zh:"开会时我有想法，却讲得没逻辑", en:"I have ideas in meetings but can't structure them"},
+     a:{zh:"多数人不是没想法，是缺一个表达的顺序。<br><br>边想边说，讲到一半就散了；有结构的人，是先说立场，再给理由，再举例子，最后收回重点。<br><br>这一级练的就是这个：观点 → 原因 → 证据 → 回应质疑。加上会议、讨论、面试情境反复练，直到它变成你的反射。<br><br>同一个想法，讲得有顺序，分量完全不同。",
+        en:"Most people don't lack ideas — they lack an order to deliver them in.<br><br>Thinking while speaking makes it drift. People who sound structured state the position, give the reason, add evidence, then close on the point.<br><br>That's exactly what this level trains: Position → Reason → Evidence → Handling pushback — practised in meetings, discussions and interviews until it's automatic.<br><br>Same idea, delivered in order, carries a completely different weight."}},
+    {id:"lv-l4", lv:4, ct:["PERSUADE"],
+     q:{zh:"我已经能沟通了，为什么还要继续学？", en:"I can already communicate — why continue?"},
+     a:{zh:"能沟通，不代表每个场合都够专业、够有分量。<br><br>这一级的差别不在更难的单词，而在准确度、语气和影响力——同一句话，怎么讲让人记得住、愿意听下去。<br><br>课堂会练 Presentation、说服、带讨论、看对象调整语气，还有被追问时怎么稳住。<br><br>目标不是会讲英文，是你开口的时候，别人会听。",
+        en:"Being able to communicate doesn't mean every setting sounds professional or carries weight.<br><br>At this level the difference isn't harder vocabulary — it's precision, tone and impact: how the same point lands so people remember it and keep listening.<br><br>You'll train presentations, persuasion, leading discussions, adapting tone to your audience, and holding steady under questioning.<br><br>The goal isn't speaking English. It's that when you speak, people listen."}},
+
+    {id:"build", lv:-1, ct:["BUILD"],
+     q:{zh:"我讲出来的句子很简单，怎么变得完整一点？", en:"My sentences are too simple — how do I build them up?"},
+     a:{zh:"先讲清楚，比一开始追求复杂句子更重要——简单但完整，别人就听得懂。<br><br>句子变完整通常不是靠更多单词，而是靠多加一样东西：原因、时间、地点或例子。<br><br>课堂会先给你稳的句型，再一次加一个细节（I work in sales → in Johor Bahru → because…），让你在同一个结构上慢慢扩展。<br><br>就像盖房子——先把柱子立稳，才加楼层。",
+        en:"Being clear matters more than being complex at first — simple but complete already gets you understood.<br><br>Fuller sentences usually don't come from more vocabulary, but from adding one more element: a reason, a time, a place or an example.<br><br>Class gives you a solid pattern first, then adds one detail at a time (I work in sales → in Johor Bahru → because…), so you expand on a structure you already trust.<br><br>Like building a house — the pillars go up before the floors."}},
+    {id:"speak_fear", lv:-1, ct:["SPEAK_FEAR","BEGINNER"],
+     q:{zh:"我怕讲错，也怕被人笑", en:"I'm scared of mistakes — and of being laughed at"},
+     a:{zh:"很多成人不敢开口，不是不想学，是怕出错、怕被比较。这个担心是真的，不用假装没有。<br><br>但语言是技能，技能就是靠出错、被纠正、再来一次练出来的。等到不会错才开口，那一天不会来。<br><br>课堂会先接住你想表达的意思，再挑一两个最该改的地方——不会为了纠正每个小错打断你。班上 9–12 人，都是同样在练的成人。<br><br>就像学开车，第一次都会紧张、会熄火，后来自然了。",
+        en:"Many adults stay silent not because they don't want to learn, but because they fear mistakes and comparison. That fear is real — no need to pretend otherwise.<br><br>But language is a skill, and skills are built by getting it wrong, being corrected, and trying again. Waiting until you can't make mistakes means never starting.<br><br>Teachers catch your meaning first, then pick one or two things worth fixing — you won't be interrupted for every small slip. Classes are 9–12 adults, all practising the same way.<br><br>Like learning to drive: everyone stalls at first."}},
+    {id:"memory", lv:-1, ct:["MEMORY"],
+     q:{zh:"我学了就忘，继续学还有用吗？", en:"I forget everything — is there any point?"},
+     a:{zh:"有用。忘记不代表没学会，那是记忆的正常过程。<br><br>真正的学习通常是：接触 → 忘掉一部分 → 想起来 → 放进句子用 → 换个场景再用。只上过一次就永久记住，本来就不是人脑的运作方式。<br><br>所以课堂会让同一个句型在不同情境重复出现，加上课后复习和老师反馈，让你在需要的时候提取得出来。<br><br>就像手机号码——你记得住的那几个，都是常打的。",
+        en:"There is. Forgetting doesn't mean you failed to learn — it's how memory works.<br><br>Real learning runs: encounter → forget some → recall → use it in a sentence → use it again in a new setting. Remembering something permanently after one exposure was never how the brain works.<br><br>So the same pattern reappears across different situations, backed by review and teacher feedback, until you can pull it out when you need it.<br><br>Like phone numbers — the ones you remember are the ones you dial."}},
+    {id:"grammar", lv:-1, ct:["GRAMMAR"],
+     q:{zh:"是不是应该先把语法补好？", en:"Shouldn't I fix my grammar first?"},
+     a:{zh:"语法要学，但不是等语法完美了才开口——那顺序反了。<br><br>很多人语法练习做得很好，真的要讲还是卡住，因为练习题考的是「选对答案」，讲话要的是「临场组织」。<br><br>课堂会先让你表达，再按你的程度补上需要的句型和语法——你会知道这条规则该放进哪句话里用，而不是只会填空。<br><br>就像学做菜，边做边调味，不是先背完整本食谱。",
+        en:"Grammar matters — but waiting until it's perfect before speaking is the wrong order.<br><br>Plenty of people score well on grammar exercises and still freeze when speaking, because exercises test picking the right answer while speaking needs building on the spot.<br><br>Class has you express first, then fills in the patterns and grammar you actually need — so you know which sentence a rule belongs in, not just how to fill a blank.<br><br>Like cooking: you season as you go, not after memorising the whole book."}},
+    {id:"flow", lv:-1, ct:["FLOW"],
+     q:{zh:"我讲话很卡，一直重复同样的词", en:"I keep pausing and repeating the same words"},
+     a:{zh:"卡顿通常不是词汇量的问题，是你同时在处理太多事：想内容、翻译、检查语法、还要担心对方反应。<br><br>当句型变成反射，脑袋才有余力去想内容。所以我们练的是把常用结构用熟，而不是一直背新词。<br><br>课堂用固定句型加不同情境反复练，让你在需要的时候不用现想。<br><br>就像打字——熟了之后你不会再找键盘在哪。",
+        en:"Hesitation usually isn't a vocabulary problem — you're juggling too much at once: content, translation, grammar checks, and the other person's reaction.<br><br>Once patterns become reflex, your head is free for the content. So we drill common structures until they're automatic, rather than piling on new words.<br><br>Fixed patterns across changing situations mean you don't have to invent from scratch mid-sentence.<br><br>Like typing — once it's fluent you stop hunting for keys."}},
+    {id:"confidence", lv:-1, ct:["CONFIDENCE"],
+     q:{zh:"一到正式场合我就紧张，讲不好", en:"I get nervous in formal settings"},
+     a:{zh:"紧张多半来自「没有准备好的感觉」——不确定要讲什么、怕被问倒。<br><br>信心不是靠鼓励长出来的，是靠练过。练过的场景，临场就不是未知数。<br><br>课堂会直接模拟这些场合：汇报、开会、被追问、客户对话。你在教室里先经历一次，真的遇到时就不是第一次。<br><br>就像面试——练过的人不是不紧张，是知道自己接得住。",
+        en:"Nerves usually come from feeling unprepared — unsure what to say, afraid of being caught out.<br><br>Confidence doesn't grow from encouragement; it grows from having done it before. A rehearsed situation stops being an unknown.<br><br>Class simulates exactly those settings: updates, meetings, follow-up questions, client conversations. You go through it here first, so the real one isn't your first time.<br><br>Like interviews — people who've practised still feel nerves, they just know they can handle it."}},
+    {id:"persuade", lv:-1, ct:["PERSUADE"],
+     q:{zh:"我讲得对，但没分量，说服不了人", en:"I'm correct, but I don't sound convincing"},
+     a:{zh:"说服力不是把英文讲得更难，是让对方觉得「这个说法站得住」。<br><br>差别通常在三件事：有没有先讲重点、有没有给理由、有没有具体例子。少了这三样，再正确的话也像意见而不是主张。<br><br>课堂会练立场 → 理由 → 证据 → 回应质疑，并放进会议、谈判、客户场景反复用。<br><br>同一个提案，有结构地讲，对方点头的机会完全不同。",
+        en:"Persuasion isn't about harder English — it's about the other person feeling your point holds up.<br><br>The gap is usually three things: leading with the point, giving a reason, and offering a concrete example. Without them, even a correct statement sounds like an opinion rather than a case.<br><br>You'll drill Position → Reason → Evidence → Handling objections, applied to meetings, negotiations and client conversations.<br><br>Same proposal, structured — a completely different chance of a yes."}},
+    {id:"react", lv:-1, ct:["REACT"],
+     q:{zh:"讨论时我反应慢，接不上话", en:"I react too slowly in discussions"},
+     a:{zh:"反应慢通常不是脑子慢，是同时要处理内容、句子、语法、还有别人的观点——负担太重。<br><br>解法不是逼自己快，是先减轻负担：有现成的开场句和结构，你就不用从零想起。<br><br>课堂会给你一套接话的句型（我同意，因为… / 我理解，不过… / 补充一点…），加上反复讨论练习，让开口的门槛降下来。<br><br>先能有条理地接上，速度会自己跟上。",
+        en:"Slow reactions usually aren't slow thinking — you're handling content, sentence, grammar and someone else's point all at once.<br><br>The fix isn't forcing speed; it's reducing load. With ready openers and a structure, you're not starting from zero each time.<br><br>You'll get a toolkit of response patterns (I agree, because… / I see your point, however… / Just to add…) plus repeated discussion practice, so getting in becomes easier.<br><br>Get structured first — speed follows on its own."}},
+    {id:"workplace", lv:-1, ct:["WORKPLACE"],
+     q:{zh:"职场上真正要用的英文，课堂练得到吗？", en:"Will class cover the English I actually use at work?"},
+     a:{zh:"练得到——因为课程本来就是为成人的工作场景设计的，不是学生课本。<br><br>会英文和能在会议里用英文，是两件事。差别在有没有在那个压力下练过。<br><br>课堂情境包括汇报进度、说明问题、提出请求、回应同事、客户沟通、面试、Presentation；老师会针对表达是否清楚、有没有重点给反馈。<br><br>你在教室里练的，就是明天办公室会发生的。",
+        en:"Yes — the course is built around adult work situations, not school textbooks.<br><br>Knowing English and using English in a meeting are two different things. The gap is whether you've practised under that pressure.<br><br>Scenarios include progress updates, explaining problems, making requests, responding to colleagues, client conversations, interviews and presentations — with feedback on clarity and whether your point lands.<br><br>What you rehearse in class is what happens in the office tomorrow."}},
+    {id:"self_doubt", lv:-1, ct:["SELF_DOUBT"],
+     q:{zh:"我怕自己学不会", en:"I'm afraid I just can't learn it"},
+     a:{zh:"我很理解——很多成人不是没学过，是学了很多次，却没有真正学会。<br><br>但英文不是天分问题，是训练方式问题。它是一项沟通技能，技能需要重复练习、即时纠正和真实使用，不是听懂就会。<br><br>所以课堂先让你表达，老师再慢慢修正，用回答、讨论和真实场景把信心一点一点建起来。<br><br>你不是不会英文，是以前没有人一步一步训练过你怎么开口。",
+        en:"I understand — many adults haven't failed to study; they've studied many times without ever really learning it.<br><br>But English isn't about talent, it's about training method. It's a communication skill, and skills need repetition, immediate correction and real use — understanding isn't enough.<br><br>So class has you express first, with the teacher refining as you go, building confidence through answering, discussion and real situations.<br><br>It's not that you can't do English. Nobody has walked you through speaking, step by step."}},
+    {id:"consistency", lv:-1, ct:["CONSISTENCY"],
+     q:{zh:"我怕自己三分钟热度，坚持不了", en:"I'm afraid I'll give up after a while"},
+     a:{zh:"会这样担心很正常——很多学员不是没学过，是学过很多次都没走完。<br><br>学英文不能只靠一开始的热情，要靠一个做得到的节奏。动力通常不是先有的，是先完成一个小行动、看见进步之后才来的。<br><br>所以我们把「学会英文」拆成阶段目标，每堂课有老师反馈，每级有学习报告，进度看得见；忙的时候可以调整节奏，而不是硬撑或直接消失。<br><br>就像上班——不是每天都有动力，但因为有固定时间和流程，你还是会继续。",
+        en:"That worry is normal — many learners haven't failed to start; they've started many times without finishing.<br><br>Learning English can't run on initial enthusiasm; it needs a rhythm you can actually keep. Motivation usually isn't there first — it shows up after you complete a small action and see progress.<br><br>So we break \u201clearn English\u201d into stage goals, with teacher feedback every class and a report each level, so progress is visible. When you're busy you adjust the pace rather than white-knuckle it or disappear.<br><br>Like work — you're not motivated every day, but the fixed time and process keep you going."}},
+    {id:"trust", lv:-1, ct:["TRUST"],
+     q:{zh:"你们和其他英文中心有什么不同？", en:"How are you different from other centres?"},
+     a:{zh:"不同课程有不同方向，重点不是谁「最好」，是哪一种训练方式适合你现在要解决的问题。<br><br>我们的重点是成人实用沟通训练：课堂不是听老师讲完就结束，而是你要开口、拿到反馈、重新讲一次，再把同一个能力换到不同场景用。<br><br>加上 5C 阶段路径，让你知道自己现在在哪、下一步练什么，而不是一直上课却说不出进步在哪。<br><br>你可以观察任何一家：有没有真实场景练习、有没有当场反馈、有没有阶段路径。",
+        en:"Different courses point in different directions. The question isn't who's \u201cbest\u201d, but which kind of training fits the problem you're trying to solve.<br><br>Our focus is practical adult communication: class isn't over when the teacher finishes explaining — you speak, get feedback, say it again, then apply the same skill in a different setting.<br><br>The 5C path shows where you are now and what's next, instead of attending endlessly without seeing progress.<br><br>You can check any centre this way: real scenario practice, live feedback, and a staged path."}},
+    {id:"result", lv:-1, ct:["RESULT"],
+     q:{zh:"多久可以看到效果？", en:"How soon will I see results?"},
+     a:{zh:"语言不是七天速成，但你不用等一年。<br><br>进步也不只是「多认得几个字」，更明显的是：比以前敢开口、句子变完整、反应变快、翻译依赖变少、别人更容易听懂你。<br><br>多数学员在头 1–2 个月就明显更敢讲，因为每堂课都必须开口。每个 Level 结束有考核和学习报告，进步是白纸黑字看得见的。<br><br>不过实际速度还是会受基础、目标和上课频率影响，不会每个人都一样。",
+        en:"Language isn't a seven-day fix — but you won't wait a year either.<br><br>Progress isn't only about knowing more words. It shows up as: speaking up more readily, fuller sentences, faster responses, less translating in your head, and people following you more easily.<br><br>Most learners speak noticeably more confidently within the first 1–2 months, because every class requires speaking. Each level ends with an assessment and a written report, so progress is visible in black and white.<br><br>Actual pace still depends on your starting point, goals and how often you attend."}},
+    {id:"duration", lv:-1, ct:["DURATION"],
+     q:{zh:"为什么一个 Level 要 48 堂？", en:"Why does one level take 48 classes?"},
+     a:{zh:"因为沟通是技能，不是听懂一次就能稳定使用的知识。<br><br>要真的用得出来，通常要走完：理解 → 开口 → 被纠正 → 再讲一次 → 换场景再用。这个循环需要次数，不是次数越少越好。<br><br>48 堂是一个阶段的完整训练周期，让每项能力都有足够机会从「知道」变成「做得到」。<br><br>它不是保证所有人结束后结果一样——个人基础、目标和参与程度都会影响实际进度。",
+        en:"Because communication is a skill, not knowledge you can use reliably after understanding it once.<br><br>To actually use it you need the full loop: understand → speak → get corrected → say it again → apply it elsewhere. That loop takes repetitions; fewer isn't better.<br><br>48 classes is one complete training cycle for a stage, giving each ability enough chances to move from \u201cI know it\u201d to \u201cI can do it\u201d.<br><br>It isn't a promise that everyone ends up in the same place — your starting point, goals and participation all affect the pace."}},
+    {id:"age", lv:-1, ct:["AGE","SELF_DOUBT"],
+     q:{zh:"我年纪比较大，现在开始会不会太迟？", en:"Am I too old to start now?"},
+     a:{zh:"不会。成人可能不像学生时代那样习惯背诵和考试，但成人有一样年轻人没有的东西：明确的使用场景。<br><br>你知道自己要在什么时候用英文——开会、见客户、面试。目标清楚，学起来反而更有方向，不会白练。<br><br>课程也是照成人的方式设计的：从实际需要出发、从做得到的步骤开始，不用跟任何人比。<br><br>重点不是几岁开始，是有没有用对方法。",
+        en:"No. Adults may be less used to memorising and exams than students were — but adults have something younger learners don't: a clear context for using it.<br><br>You know exactly when you'll need English — meetings, clients, interviews. A clear target gives your learning direction, so nothing is wasted.<br><br>The course is designed for adults too: starting from real needs and steps you can actually take, with nobody to compare yourself against.<br><br>What matters isn't the age you start. It's whether the method fits."}}
+  ],
   LESSONS_PER_MONTH:12,  /* 时长换算：48 堂 = 4 个月（即每月 12 堂） */
   JOURNEY_DEFAULT_FROM:1,
   JOURNEY_DEFAULT_TO:3,
@@ -1760,9 +1885,9 @@ io.observe(er);})();
 (function(){
   var DEFAULTS=[
     {id:'fynOoEpUtEQ'},{id:'hEju5LBQ6v4'},{id:'iuqZKTf44bQ'},{id:'qYAzzpC083Y'},
-    {id:'8AsA0yF385s'},{id:'GmtQmlFOioo'},{id:'qhlJQ8baMIE'}
+    {id:'8AsA0yF385s'},{id:'GmtQmlFOioo'}
   ];
-  var KEY='te_sales_stories_v3';
+  var KEY='te_sales_stories_v4';
   function load(){try{var v=JSON.parse(localStorage.getItem(KEY));if(Array.isArray(v)&&v.length)return v;}catch(e){}return JSON.parse(JSON.stringify(DEFAULTS));}
   var STORIES=load();
   var grid=document.getElementById('sgrid'), player=document.getElementById('splayer'), pv=document.getElementById('spVid'), ps=document.getElementById('spSum');
@@ -1900,13 +2025,12 @@ io.observe(er);})();
 })();
 
 
-/* ============ FAQ accordion ============ */
-document.querySelectorAll('.qa__q').forEach(function(q){
-  q.addEventListener('click',function(){
-    var qa=q.parentNode, a=qa.querySelector('.qa__a');
-    var open=qa.classList.toggle('open');
-    a.style.maxHeight=open?(a.scrollHeight+'px'):0;
-  });
+/* ============ FAQ accordion（事件委派：动态生成的题目也能展开） ============ */
+document.addEventListener('click',function(e){
+  var q=e.target.closest&&e.target.closest('.qa__q'); if(!q)return;
+  var qa=q.parentNode, a=qa.querySelector('.qa__a'); if(!a)return;
+  var open=qa.classList.toggle('open');
+  a.style.maxHeight=open?(a.scrollHeight+'px'):0;
 });
 
 document.getElementById('yr').textContent=new Date().getFullYear();
@@ -2377,6 +2501,109 @@ window.__openTimetable=openTimetable;
     mod.addEventListener('click',function(e){ if(e.target===mod)close(); });
     document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!mod.hidden)close(); });
   })();
+})();
+
+/* ===== FAQ：按顾问勾的痛点 + 学员 level 筛选（顾虑优先，不一次摊开所有疑虑） ===== */
+(function(){
+  var ALL=CONFIG.FAQS||[]; if(!ALL.length)return;
+  var list=document.getElementById('faqList'); if(!list)return;
+  var lead=document.getElementById('faqLead'), more=document.getElementById('faqMore'),
+      chips=document.getElementById('faqChips'), end=document.getElementById('faqEnd');
+
+  var lvFrom=parseInt(QP&&QP.get('from'),10); if(isNaN(lvFrom))lvFrom=-1;
+  var picked=(function(){var v=(QP&&QP.get('p'))||'';return v.split(',').map(function(x){return parseInt(x,10);}).filter(function(x){return !isNaN(x)&&x>=0&&x<4;});})();
+  var advName=(typeof ADV!=='undefined'&&ADV&&ADV.name)?ADV.name:'';
+
+  /* 顾问勾的痛点 → 顾虑标签 */
+  var wanted=[];
+  if(lvFrom>=0){
+    var pcRow=(CONFIG.PAIN_CONCERN||{})[lvFrom]||[];
+    picked.forEach(function(i){ var c=pcRow[i]; if(c&&wanted.indexOf(c)<0)wanted.push(c); });
+  }
+
+  function byId(id){for(var i=0;i<ALL.length;i++)if(ALL[i].id===id)return ALL[i];return null;}
+  var shown=[], seen={};
+  function push(f){ if(f&&!seen[f.id]){seen[f.id]=1;shown.push(f);} }
+
+  /* 1) 他这一级的起手题 */
+  if(lvFrom>=0)ALL.forEach(function(f){ if(f.lv===lvFrom)push(f); });
+  /* 2) 顾问勾的痛点对应的题（最多 2 题） */
+  var added=0;
+  wanted.forEach(function(c){
+    if(added>=2)return;
+    for(var i=0;i<ALL.length;i++){
+      var f=ALL[i];
+      if(!seen[f.id]&&f.lv===-1&&!f.core&&(f.ct||[]).indexOf(c)>-1){push(f);added++;break;}
+    }
+  });
+  /* 2b) 不足 2 题就补位：用通用度最高的两题顶上，让每个人都看到 6 题 */
+  var FILL=["result","self_doubt"];
+  for(var fi=0;fi<FILL.length&&added<2;fi++){ var ff=byId(FILL[fi]); if(ff&&!seen[ff.id]){push(ff);added++;} }
+  /* 3) 固定三题（钱 / 时间 / 下一步）永远在最后 */
+  ALL.forEach(function(f){ if(f.core)push(f); });
+
+  function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function qaHTML(f,isNew){
+    return '<div class="qa card'+(isNew?' is-new':'')+'" data-fid="'+f.id+'">'+
+      '<button class="qa__q"><span class="zh">'+esc(f.q.zh)+'</span><span class="en">'+esc(f.q.en)+'</span></button>'+
+      '<div class="qa__a"><p><span class="zh">'+f.a.zh+'</span><span class="en">'+f.a.en+'</span></p></div></div>';
+  }
+  list.innerHTML=shown.map(function(f){return qaHTML(f,false);}).join('');
+
+  /* 开场一句：按他的起点说话 */
+  var LEADS=[
+    ['从安心开始——先看得懂、跟得上，再慢慢敢开口。','Start with ease — understand, keep up, then speak.'],
+    ['从零散的单词，到讲得出完整的句子。','From scattered words to complete sentences.'],
+    ['不只是说得出，而是把意思讲清楚。','Not just speaking — being understood.'],
+    ['练观点、理由和逻辑，让你的话有分量。','Train your position, reasons and logic — so your words carry weight.'],
+    ['提升专业表达与影响力，让人愿意听你讲。','Sharpen professional impact — so people listen.']
+  ];
+  if(lvFrom>=0&&LEADS[lvFrom]){
+    lead.innerHTML='<span class="zh">'+LEADS[lvFrom][0]+'</span><span class="en">'+LEADS[lvFrom][1]+'</span>';
+    lead.hidden=false;
+  }
+
+  /* 顾虑标签：点了才展开那一组，不主动摊开所有疑虑 */
+  var GROUPS=CONFIG.FAQ_GROUPS||[];
+  var openG={};
+  chips.innerHTML=GROUPS.map(function(g){
+    return '<button class="faqchip" data-g="'+g.k+'"><span class="zh">'+g.zh+'</span><span class="en">'+g.en+'</span></button>';
+  }).join('');
+  more.hidden=false;
+
+  chips.addEventListener('click',function(e){
+    var b=e.target.closest('.faqchip'); if(!b)return;
+    var k=b.getAttribute('data-g');
+    var g=null; for(var i=0;i<GROUPS.length;i++)if(GROUPS[i].k===k)g=GROUPS[i];
+    if(!g)return;
+    if(openG[k]){
+      /* 再点一次收起该组（保留原本已显示的） */
+      openG[k]=false; b.classList.remove('is-on');
+      [].forEach.call(list.querySelectorAll('[data-grp="'+k+'"]'),function(el){ delete seen[el.getAttribute('data-fid')]; el.remove(); });
+      return;
+    }
+    openG[k]=true; b.classList.add('is-on');
+    var add=ALL.filter(function(f){
+      if(seen[f.id]||f.core)return false;
+      if(f.lv!==-1&&f.lv!==lvFrom)return false;
+      return (f.ct||[]).some(function(c){return g.ct.indexOf(c)>-1;});
+    });
+    if(!add.length)return;
+    var core=[].slice.call(list.querySelectorAll('.qa')).filter(function(el){var f=byId(el.getAttribute('data-fid'));return f&&f.core;});
+    var anchor=core.length?core[0]:null;
+    add.forEach(function(f){
+      seen[f.id]=1;
+      var wrap=document.createElement('div');
+      wrap.innerHTML=qaHTML(f,true);
+      var node=wrap.firstChild; node.setAttribute('data-grp',k);
+      if(anchor)list.insertBefore(node,anchor); else list.appendChild(node);
+    });
+  });
+
+  /* 收尾：FAQ 的终点是对话，不是自助服务 */
+  end.innerHTML='<span class="zh">还有其他想问的，直接问'+(advName?(' <b>'+esc(advName)+'</b> '):'顾问')+'就好——这些问题，我们每天都在回答。</span>'+
+    '<span class="en">Anything else on your mind, just ask'+(advName?(' <b>'+esc(advName)+'</b>'):' your advisor')+' — we answer these every day.</span>';
+  end.hidden=false;
 })();
 
 /* ===== 5C framework (ported from console) ===== */
