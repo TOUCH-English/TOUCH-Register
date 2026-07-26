@@ -572,7 +572,10 @@ body.te-en .jnote__who::after{content:" says"}
 .jstage__future{margin-top:18px;padding:14px 16px;border-radius:14px;background:rgba(31,120,210,.06);font-size:14px;font-weight:700;color:var(--ink);line-height:1.55}
 .jstage__future b{color:var(--lc,#1F78D2)}
 .jstage__vids{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
-.jvid{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;cursor:pointer;background:#0E2A63}
+.jvfig{display:flex;flex-direction:column;gap:8px;margin:0}
+.jvcap{font-size:12px;line-height:1.5;font-weight:600;color:var(--ink2)}
+.jvid{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;cursor:pointer;background:#0E2A63;width:100%;border:none;padding:0;transition:.2s}
+.jvid:hover{transform:translateY(-2px)}
 .jvid img{width:100%;height:100%;object-fit:cover}
 .jvid::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.3))}
 .jvid__pl{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.94);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px -6px rgba(0,0,0,.4)}
@@ -1850,27 +1853,42 @@ var CONFIG={
      now:"英文单词都认不全，别人说什么常常听不懂",
      gain:["听懂简单的日常指令","做基本的自我介绍","给出简单的回答"],
      future:"在店里、在职场，简单的英文你听得懂、也答得出来",
-     videos:[]},
+     videos:[
+       {id:"dW0WfzzcQJY", t:{zh:"完成 Pre-1 后，自信度的前后对比", en:"After Pre-1: the confidence before vs after"}},
+       {id:"zF83rTejl3c", t:{zh:"从一句都不会，到英文改变了就业机会", en:"From not a single sentence to English changing his job prospects"}}
+     ]},
     {key:"L1", tag:"Level 1", skill:"Sentence Construction", color:"#2E9E50",
      now:"只会蹦单词，讲不成一句完整的话",
      gain:["讲出完整的句子","加上原因和细节","回答得更完整"],
      future:"自我介绍、聊日常，你能讲成一段话，不再只是单词",
-     videos:[]},
+     videos:[
+       {id:"YUvAmPF0jaY", t:{zh:"完成 Level 1 后，自信度的前后对比", en:"After Level 1: the confidence before vs after"}},
+       {id:"iuJE4iCW4SQ", t:{zh:"Ming Yue：3 个月前 vs 3 个月后", en:"Ming Yue: three months before vs after"}}
+     ]},
     {key:"L2", tag:"Level 2", skill:"Conveying", color:"#1F9FE6",
      now:"有想法，却不知道怎么讲清楚、讲出观点",
      gain:["讲出自己的看法","说明理由和例子","回应不同的意见"],
      future:"开会时你敢发言，讲得有条理，别人听得懂你的想法",
-     videos:[]},
+     videos:[
+       {id:"qQx_r4-SxZs", t:{zh:"Ng Yee Ching · 会计师 33 岁：比以前更敢表达", en:"Ng Yee Ching, accountant, 33 — speaking up far more than before"}},
+       {id:"o0ZpSJti01o", t:{zh:"Pre-1 到 Level 2：身边的人都惊讶", en:"Pre-1 to Level 2 — the people around her were surprised"}}
+     ]},
     {key:"L3", tag:"Level 3", skill:"Convincing", color:"#E8472B",
      now:"讲是能讲，但没分量，说服不了人、撑不住反问",
      gain:["清楚地做汇报和 presentation","谈判和说服他人","面对质疑也稳住立场"],
      future:"见客户、做汇报、被追问，你都稳得住，讲得有说服力",
-     videos:[]},
+     videos:[
+       {id:"RrfqqbJ5AO4", t:{zh:"从单词都不会念，到能用英文说服别人", en:"From not being able to pronounce words to persuading in English"}},
+       {id:"Z2ArRW_fcMA", t:{zh:"Level 3 课前课后有什么变化", en:"Level 3 — what changed, before and after"}}
+     ]},
     {key:"L4", tag:"Level 4", skill:"Captivating", color:"#15335E",
      now:"讲得对，但还不够精准、不够有影响力",
      gain:["有影响力地演讲","外交式的谈判","带讨论、看对象调整语气"],
      future:"你的英文精准、专业、有分量——你在场，大家会听你的",
-     videos:[]}
+     videos:[
+       {id:"BSom6KeM69E", t:{zh:"Lim Yoke Fen · Best Level 4", en:"Lim Yoke Fen — Best Level 4"}},
+       {id:"nmxJFXERCsU", t:{zh:"Min En：18 岁，在 200 位观众前英语演说", en:"Min En, 18 — speaking English before an audience of 200"}}
+     ]}
   ],
   CASE_VIDEOS:[
     "dW0WfzzcQJY","BSom6KeM69E","_Na5XJUTZYE","BbB0WMARIw8","qhlJQ8baMIE","tMJCH5m2H9g","UEVXUXii09U","BngQV_xe0B4"
@@ -2307,9 +2325,13 @@ var PSTU=(function(){
 
   /* stage card builder */
   function vids(l){
-    if(!l.videos||!l.videos.length)return '';   /* 暂时不放视频；把 CONFIG.LEVELS 里的 videos 填回去就会自动显示 */
-    return '<div class="jstage__vids">'+l.videos.map(function(id){
-      return '<button class="jvid" data-yt="'+esc(id)+'"><img loading="lazy" src="https://i.ytimg.com/vi/'+esc(id)+'/hqdefault.jpg" alt=""><span class="jvid__pl"></span></button>';
+    if(!l.videos||!l.videos.length)return '';
+    return '<div class="jstage__vids">'+l.videos.map(function(v){
+      var id=(typeof v==='string')?v:v.id, t=(typeof v==='object'&&v.t)?v.t:null;
+      return '<figure class="jvfig">'+
+        '<button class="jvid" data-yt="'+esc(id)+'"><img loading="lazy" src="https://i.ytimg.com/vi/'+esc(id)+'/hqdefault.jpg" alt=""><span class="jvid__pl"></span></button>'+
+        (t?'<figcaption class="jvcap"><span class="zh">'+esc(t.zh)+'</span><span class="en">'+esc(t.en||t.zh)+'</span></figcaption>':'')+
+      '</figure>';
     }).join('')+'</div>';
   }
   function gainList(l){return '<ul class="jstage__gain">'+l.gain.map(function(g){return '<li>'+esc(g)+'</li>';}).join('')+'</ul>';}
