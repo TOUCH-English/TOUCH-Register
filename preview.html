@@ -611,7 +611,10 @@ body.te-en .jnote__who::after{content:" says"}
   mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/13px no-repeat}
 .jstage__future{margin-top:18px;padding:14px 16px;border-radius:14px;background:rgba(31,120,210,.06);font-size:14px;font-weight:700;color:var(--ink);line-height:1.55}
 .jstage__future b{color:var(--lc,#1F78D2)}
-.jstage__vids{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.jlike{margin-top:18px;font-size:13px;font-weight:700;color:var(--ink2);padding-left:14px;border-left:3px solid var(--lc,#1F78D2);line-height:1.6}
+.heard__card--note{background:linear-gradient(160deg,rgba(255,251,235,.95),rgba(255,247,224,.8));border-color:rgba(210,162,60,.34)}
+.heard__card--note .heard__h{color:#8a6516}
+.jstage__vids{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
 .jvfig{display:flex;flex-direction:column;gap:8px;margin:0}
 .jvcap{font-size:12px;line-height:1.5;font-weight:600;color:var(--ink2)}
 .jvid{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;cursor:pointer;background:#0E2A63;width:100%;border:none;padding:0;transition:.2s}
@@ -1211,6 +1214,7 @@ footer{padding:36px 0 46px;text-align:center;font-size:12.5px;color:var(--mut)}
         <p class="heard__body" id="heardBody"></p>
         <span class="heard__sign" id="heardSign"></span>
       </div>
+      <div class="heard__card heard__card--note rv d1" id="advSay" hidden></div>
       <div class="heard__card heard__card--why rv d1" id="whyCard">
         <span class="heard__h"><span class="zh">为什么建议从这一级开始</span><span class="en">Why we suggest starting here</span></span>
         <p class="heard__body" id="whyBody"></p>
@@ -1257,11 +1261,11 @@ footer{padding:36px 0 46px;text-align:center;font-size:12.5px;color:var(--mut)}
 <!-- PAIN -->
 <section id="pain">
   <div class="wrap">
-    <div class="center rv">
+    <div class="center rv" id="painHead">
       <span class="eyebrow r"><span class="zh">你是不是也这样</span><span class="en">Sound familiar?</span></span>
       <h2><span class="zh">学了十几年英文，<br>为什么开会还是不敢讲？</span><span class="en">You studied English for years.<br>Why are you still silent in meetings?</span></h2>
     </div>
-    <div class="pains">
+    <div class="pains" id="painGrid">
       <div class="pain card rv"><span class="pain__ic">💬</span><div><b><span class="zh">听得懂，说不出</span><span class="en">Understand, but can't speak</span></b><p><span class="zh">脑子里有想法，一开口就卡住，最后只讲一句 "yes, okay"。</span><span class="en">The ideas are there — but the words won't come. You end up saying "yes, okay."</span></p></div></div>
       <div class="pain card rv d1"><span class="pain__ic">🧑‍💼</span><div><b><span class="zh">开会插不上话</span><span class="en">Invisible in meetings</span></b><p><span class="zh">明明你的方案更好，却因为不敢用英文表达，功劳被别人拿走。</span><span class="en">Your idea was better — but someone else said theirs in English, and got the credit.</span></p></div></div>
       <div class="pain card rv d2"><span class="pain__ic">📱</span><div><b><span class="zh">见客户先心虚</span><span class="en">Nervous with clients</span></b><p><span class="zh">客户一讲英文你就紧张，只能一直点头，专业形象大打折扣。</span><span class="en">The moment a client switches to English, you freeze and just nod along.</span></p></div></div>
@@ -2463,9 +2467,18 @@ var PSTU=(function(){
   }).join('');
 
   /* stage card builder */
-  function vids(l){
+  var LIKEYOU={
+    0:["和你一样，他一开始也几乎讲不出一句完整的英文。","Like you, he could barely put one full English sentence together at the start."],
+    1:["和你一样，他一开始也只讲得出零散的单词。","Like you, he could only manage scattered words at first."],
+    2:["和你一样，她以前讲得出句子，但别人常常听不懂重点。","Like you, she could form sentences — people just couldn't catch her point."],
+    3:["和你一样，他以前讲得出来，却总觉得自己的话没有分量。","Like you, he could say it — it just never seemed to carry weight."],
+    4:["和你一样，她的英文本来就不差，只是还差那一点影响力。","Like you, her English was already good — it just lacked that final edge of impact."]
+  };
+  function vids(l,li){
     if(!l.videos||!l.videos.length)return '';
-    return '<div class="jstage__vids">'+l.videos.map(function(v){
+    var lead=LIKEYOU[li];
+    return (lead?'<p class="jlike"><span class="zh">'+lead[0]+'</span><span class="en">'+lead[1]+'</span></p>':'')+
+      '<div class="jstage__vids">'+l.videos.map(function(v){
       var id=(typeof v==='string')?v:v.id, t=(typeof v==='object'&&v.t)?v.t:null;
       return '<figure class="jvfig">'+
         '<button class="jvid" data-yt="'+esc(id)+'"><img loading="lazy" src="https://i.ytimg.com/vi/'+esc(id)+'/hqdefault.jpg" alt=""><span class="jvid__pl"></span></button>'+
@@ -2502,7 +2515,7 @@ var PSTU=(function(){
       (i===from?noteBlock():'')+
       gainList(l)+
       '<div class="jstage__future"><b>'+(goal?'这就是未来的你 → ':'这一步之后 → ')+'</b>'+esc(l.future)+'</div>'+
-      vids(l)+
+      vids(l,i)+
       '<button class="jstage__map" data-map="'+i+'">📖 <span class="zh">看这一级课堂学什么</span><span class="en">What you learn at this level</span></button>'+
     '</div>';
   }
@@ -2513,7 +2526,7 @@ var PSTU=(function(){
       '<span>'+(i<from?'你的旅程之前 · ':'达成目标后，还能继续往上 · ')+esc(l.tag)+' '+esc(l.skill)+'</span>'+
       '<span class="cta">点击了解 ›</span></div>'+
       '<div class="jlock__bd"><p class="jstage__now" style="padding-top:8px"><span class="em">这一级：</span>'+esc(l.now)+'</p>'+gainList(l)+
-      '<div class="jstage__future">'+esc(l.future)+'</div>'+vids(l)+
+      '<div class="jstage__future">'+esc(l.future)+'</div>'+vids(l,i)+
       '<button class="jstage__map" data-map="'+i+'">📖 <span class="zh">看这一级课堂学什么</span><span class="en">What you learn at this level</span></button>'+
       '</div></div>';
   }
@@ -2875,18 +2888,71 @@ window.__openTimetable=openTimetable;
   if(caTxt){
     body=esc(caTxt);                                   /* 顾问亲自写的，优先 */
   }else{
-    /* 没写就用勾选的痛点组成一段自然的话 */
-    var full=(document.body.classList.contains('te-en')?CONFIG.LEVEL_PAINS_EN:CONFIG.LEVEL_PAINS_ZH)||[];
-    var row=full[from]||[];
-    var items=(picked.length?picked:[0,1]).map(function(i){return row[i];}).filter(Boolean);
+    /* 用勾选的痛点组成一段自然的话：主要卡点 + 补充卡点，不是分号拼接 */
     var zhRow=(CONFIG.LEVEL_PAINS_ZH||[])[from]||[], enRow=(CONFIG.LEVEL_PAINS_EN||[])[from]||[];
-    var zhItems=(picked.length?picked:[0,1]).map(function(i){return zhRow[i];}).filter(Boolean);
-    var enItems=(picked.length?picked:[0,1]).map(function(i){return enRow[i];}).filter(Boolean);
-    body=bi('从今天的交流和定位结果来看，你目前的情况是：'+zhItems.join('；')+'。这些不是「英文不好」，而是训练还没走到那一步。',
-            'From today\'s session and your placement result, where you are now: '+enItems.join('; ')+'. None of this means bad English — it means the training hasn\'t reached that step yet.');
+    var use=(picked.length?picked:[0,1]).slice(0,3);
+    var zhI=use.map(function(i){return zhRow[i];}).filter(Boolean);
+    var enI=use.map(function(i){return enRow[i];}).filter(Boolean);
+    function weave(a,joiners,tail){
+      if(!a.length)return '';
+      var out=a[0];
+      for(var i=1;i<a.length;i++)out+=joiners[Math.min(i-1,joiners.length-1)]+a[i];
+      return out+tail;
+    }
+    var zhTxt=weave(zhI,['。同时，','。再加上，'],'。');
+    var enTxt=weave(enI,['. At the same time, ','. On top of that, '],'.');
+    body=bi('从今天的交流和定位测试来看：'+zhTxt+'<br><br>这些不代表你「英文不好」，只是训练还没走到那一步——而这正是我们建议的起点要解决的。',
+            'From today\'s session and your placement test: '+enTxt+'<br><br>None of this means your English is bad. It means the training hasn\'t reached that step yet — and that\'s exactly what your suggested starting point addresses.');
   }
   document.getElementById('heardBody').innerHTML=body;
   document.getElementById('heardSign').innerHTML=advName?('— '+esc(advName)+bi('，根据今天的交流整理',', from today\'s session')):'';
+
+  /* 顾问想补充给你的话：有填才出现，不留空标题 */
+  var noteTxt=g('note');
+  if(noteTxt){
+    var nEl=document.getElementById('advSay');
+    if(nEl){
+      nEl.innerHTML='<span class="heard__h">'+bi((advName?esc(advName)+' ':'顾问')+'想补充给你的话','A note from '+(advName?esc(advName):'your advisor'))+'</span>'+
+        '<p class="heard__body">'+esc(noteTxt)+'</p>';
+      nEl.hidden=false;
+    }
+  }
+
+  /* 结尾行动：按最主要的顾虑换文案 */
+  (function(){
+    if(!picked.length)return;
+    var CT={
+      0:['我的程度适合从这里开始吗？','Is this the right starting point for me?'],
+      1:['我怕讲错，课堂真的不会尴尬吗？','I\'m afraid of mistakes — will class feel awkward?'],
+      2:['我这样的情况，多久会有改变？','How soon would someone like me see a change?'],
+      3:['这个安排，我的时间排得进吗？','Can this schedule actually fit my week?']
+    };
+    var c=CT[picked[0]]; if(!c)return;
+    var b=document.getElementById('advWaBtn'); if(!b)return;
+    var zh=b.querySelector('.zh'), en=b.querySelector('.en');
+    if(zh)zh.textContent='问 '+(advName||'顾问')+'：'+c[0];
+    if(en)en.textContent='Ask '+(advName||'your advisor')+': '+c[1];
+  })();
+
+  /* 后面的通用痛点区：只留他勾选的那几个，避免跟上面重复 */
+  (function(){
+    if(!picked.length)return;
+    var grid=document.getElementById('painGrid'), head=document.getElementById('painHead');
+    if(!grid)return;
+    var cards=[].slice.call(grid.children);
+    var zhRow2=(CONFIG.LEVEL_PAINS_ZH||[])[from]||[], enRow2=(CONFIG.LEVEL_PAINS_EN||[])[from]||[];
+    var ICO=['💬','🧑‍💼','📱','🚪'];
+    var short=(CONFIG.PAIN_SHORT||{})[from]||[];
+    grid.innerHTML=picked.slice(0,3).map(function(i,k){
+      var t=short[i]||['',''], d=[zhRow2[i]||'',enRow2[i]||''];
+      return '<div class="pain card rv'+(k?' d'+k:'')+'"><span class="pain__ic">'+ICO[i%4]+'</span><div>'+
+        '<b>'+bi(esc(t[0]),esc(t[1]))+'</b><p>'+bi(esc(d[0]),esc(d[1]))+'</p></div></div>';
+    }).join('');
+    if(head){
+      head.innerHTML='<span class="eyebrow r">'+bi('你说过的','What you told us')+'</span>'+
+        '<h2>'+bi('这就是你现在卡住的地方', 'This is where you\'re stuck right now')+'</h2>';
+    }
+  })();
 
   /* ---------- 3) 为什么建议从这一级开始 ---------- */
   var why=(CONFIG.WHY_LEVEL||{})[from];
