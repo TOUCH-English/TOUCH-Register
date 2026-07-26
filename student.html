@@ -223,7 +223,10 @@ mark::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:8px;ba
 .tpop__orb{position:relative;flex:none;width:88px;height:88px;border-radius:50%;overflow:hidden;
   background:linear-gradient(160deg,#E7EEFA,#D2E0F3);display:flex;align-items:center;justify-content:center;
   font-size:30px;font-weight:800;color:#8AA3C7;box-shadow:0 0 0 4px #fff,0 0 0 6px rgba(31,120,210,.28),0 14px 30px -14px rgba(21,53,123,.5)}
-.tpop__orb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tpop__orb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .28s ease;z-index:2}
+.tpop__orb.has-photo img{opacity:1}
+.tpop__ph{font-style:normal;position:relative;z-index:1;transition:opacity .2s ease}
+.tpop__orb.has-photo .tpop__ph{opacity:0}
 .tpop__name{font-size:25px;font-weight:900;letter-spacing:-.01em;color:var(--ink);line-height:1.2}
 .tpop__tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
 .ttag{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;
@@ -466,7 +469,9 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .yclass__t:hover{background:#fff;border-color:rgba(31,120,210,.4);transform:translateY(-2px)}
 .yclass__ic{font-size:19px;flex:none;width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(31,120,210,.1)}
 .yclass__av{position:relative;flex:none;width:40px;height:40px;border-radius:50%;overflow:hidden;background:linear-gradient(160deg,#E7EEFA,#DCE6F5);display:flex;align-items:center;justify-content:center;font-size:18px}
-.yclass__av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.yclass__av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .25s ease}
+.yclass__av.has-photo img{opacity:1}
+.yclass__av.has-photo em{opacity:0}
 .yclass__lb{display:block;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
 .yclass__row b{display:block;font-size:14.5px;margin-top:2px}
 .yclass__row i{font-style:normal;font-size:11.5px;color:var(--mut);font-weight:600}
@@ -1562,17 +1567,17 @@ var CONFIG={
   ],
   /* 老师资料（与 console TEAM 同步）：链接 ?t=键名 显示「你的老师」 */
   TEACHERS:{
-    rajan:{title:"Mr",n:"Rajan",img:"assets/team/rajan.png",role:"Senior Teacher · IELTS Trainer",spec:"IELTS Preparation",edu:"LLB (Hons) & English Teaching — University of Wolverhampton, UK",style:"Traditional, trusted fundamentals — reading for sentence structure, speaking for confidence, grammar for writing, and vocabulary for word choice.",about:"Teaches with sincere dedication to students' educational needs, aiming to enrich young minds and help them grasp the fine intricacies of English.",quote:"To educate is an act of love, not a problem.",rating:"4.92",mbti:"ESTJ",mtype:"Organizer",joined:"2014",passion:"Teaching; Lecturing",hobbies:"Reading & news; watching sports (esp. Premier League)"},
+    rajan:{title:"Sir",n:"Rajan",img:"assets/team/rajan.png",role:"Senior Teacher · IELTS Trainer",spec:"IELTS Preparation",edu:"LLB (Hons) & English Teaching — University of Wolverhampton, UK",style:"Traditional, trusted fundamentals — reading for sentence structure, speaking for confidence, grammar for writing, and vocabulary for word choice.",about:"Teaches with sincere dedication to students' educational needs, aiming to enrich young minds and help them grasp the fine intricacies of English.",quote:"To educate is an act of love, not a problem.",rating:"4.98",mbti:"ESTJ",mtype:"Organizer",joined:"2014",passion:"Teaching; Lecturing",hobbies:"Reading & news; watching sports (esp. Premier League)"},
     simran:{title:"Ms",n:"Simran",img:"assets/team/simran.png",role:"Teacher",spec:"Adult English Communication",edu:"B.ED Teaching English as a Second Language (TESL) — University of Selangor (UNISEL)",style:"Humour and interactive activities for a fun, engaging and collaborative classroom.",about:"A lifelong dreamer of becoming a teacher who connects with students through laughter and conversation, believing humour enriches learning.",quote:"Life is not a problem to be solved but a reality to be experienced.",rating:"4.97",mbti:"INFP",mtype:"Inspirer",joined:"2023",passion:"Teaching; cooking different cuisines; learning about car models",hobbies:"Cooking; music; modifying small car parts"},
-    mai:{title:"Ms",n:"Mai",img:"assets/team/mai.png",role:"Teacher",spec:"Adult English Communication",edu:"",style:"",about:"Passionate about helping adult learners build confidence through practical communication and immersive learning experiences.",quote:"Believe you can and you're already halfway there.",rating:"4.94",mbti:"ENFP",mtype:"Inspirer",joined:"2024"},
-    darshni:{title:"Ms",n:"Darshni",img:"assets/team/darshni.png",role:"Teacher",spec:"Adult English Communication",edu:"Bachelor of Arts in TESL — Quest International University, Ipoh",style:"Dynamic methods that foster critical thinking and meaningful discussion in a supportive, inclusive classroom.",about:"An enthusiastic, passionate teacher from Ipoh, highly effective with students of all backgrounds in reaching their learning goals.",quote:"Thoughts become things.",rating:"4.96",mbti:"ENFJ",mtype:"Inspirer",joined:"2023",passion:"Teaching and sharing knowledge; building social skills and character",hobbies:"Painting; Research; Outdoor activities"},
-    yaamini:{title:"Ms",n:"Yaamini",img:"assets/team/yaamini.png",role:"Teacher",spec:"Adult English Communication",edu:"Bachelor's in Teaching English as a Second Language (Hons) — City University of Malaysia",style:"Rooted in Vygotsky's Cognitive Development theory — clear grammar explanation before practice to build confidence and understanding.",about:"A dedicated, easy-going teacher known for a positive nature and strong, friendly teacher-student relationships.",quote:"Own your throne, queen, and rule your realm with unapologetic power.",rating:"4.89",mbti:"ISFJ",mtype:"Organizer",joined:"2023",passion:"Helping students become proficient, confident English speakers",hobbies:"Netflix (psychological thrillers & documentaries); relaxing"},
-    yoha:{title:"Ms",n:"Yoha",img:"assets/team/yoha.png",role:"Teacher",spec:"Adult English Communication",edu:"BA in English Literature — Universiti Putra Malaysia (UPM)",style:"",about:"I create a warm, engaging learning environment where students feel comfortable, confident and encouraged to express themselves — believing every mistake is a chance to learn and grow.",quote:"The trouble is, you think you have time.",rating:"4.92",mbti:"INFJ",mtype:"Inspirer",joined:"2025"},
-    nita:{title:"Ms",n:"Nita",img:"assets/team/nita.png",role:"Head of Curriculum",spec:"Curriculum Design",edu:"Masters in English Linguistics — University of Malaya (UM)",style:"Inquiry approach that builds strong rapport between teacher and learners.",about:"Over 7 years guiding mixed-ability learners and exam prep (IELTS, MUET) plus Business English company training; loves supporting learners to impact their wider community.",quote:"Let us not pray to be sheltered from dangers, but to be fearless in facing them. — Rabindranath Tagore",rating:"4.95",mbti:"INFJ",mtype:"Inspirer",joined:"2017",passion:"Ancient civilizations & architecture",hobbies:"Postcrossing"},
+    mai:{title:"Ms",n:"Mai",img:"assets/team/mai.png",role:"Teacher",spec:"Adult English Communication",edu:"",style:"",about:"Passionate about helping adult learners build confidence through practical communication and immersive learning experiences.",quote:"Believe you can and you're already halfway there.",rating:"4.95",mbti:"ENFP",mtype:"Inspirer",joined:"2024"},
+    darshni:{title:"Ms",n:"Darshni",img:"assets/team/darshni.png",role:"Teacher",spec:"Adult English Communication",edu:"Bachelor of Arts in TESL — Quest International University, Ipoh",style:"Dynamic methods that foster critical thinking and meaningful discussion in a supportive, inclusive classroom.",about:"An enthusiastic, passionate teacher from Ipoh, highly effective with students of all backgrounds in reaching their learning goals.",quote:"Thoughts become things.",rating:"4.92",mbti:"ENFJ",mtype:"Inspirer",joined:"2023",passion:"Teaching and sharing knowledge; building social skills and character",hobbies:"Painting; Research; Outdoor activities"},
+    yaamini:{title:"Ms",n:"Yaamini",img:"assets/team/yaamini.png",role:"Teacher",spec:"Adult English Communication",edu:"Bachelor's in Teaching English as a Second Language (Hons) — City University of Malaysia",style:"Rooted in Vygotsky's Cognitive Development theory — clear grammar explanation before practice to build confidence and understanding.",about:"A dedicated, easy-going teacher known for a positive nature and strong, friendly teacher-student relationships.",quote:"Own your throne, queen, and rule your realm with unapologetic power.",rating:"4.88",mbti:"ISFJ",mtype:"Organizer",joined:"2023",passion:"Helping students become proficient, confident English speakers",hobbies:"Netflix (psychological thrillers & documentaries); relaxing"},
+    yoha:{title:"Ms",n:"Yoha",img:"assets/team/yoha.png",role:"Teacher",spec:"Adult English Communication",edu:"BA in English Literature — Universiti Putra Malaysia (UPM)",style:"",about:"I create a warm, engaging learning environment where students feel comfortable, confident and encouraged to express themselves — believing every mistake is a chance to learn and grow.",quote:"The trouble is, you think you have time.",rating:"4.91",mbti:"INFJ",mtype:"Inspirer",joined:"2025"},
+    nita:{title:"Ms",n:"Nita",img:"assets/team/nita.png",role:"Head of Curriculum",spec:"Curriculum Design",edu:"Masters in English Linguistics — University of Malaya (UM)",style:"Inquiry approach that builds strong rapport between teacher and learners.",about:"Over 7 years guiding mixed-ability learners and exam prep (IELTS, MUET) plus Business English company training; loves supporting learners to impact their wider community.",quote:"Let us not pray to be sheltered from dangers, but to be fearless in facing them. — Rabindranath Tagore",rating:"4.86",mbti:"INFJ",mtype:"Inspirer",joined:"2017",passion:"Ancient civilizations & architecture",hobbies:"Postcrossing"},
     valar:{title:"Ms",n:"Valar",img:"assets/team/valar.png",role:"Head of Student Affairs",spec:"Student Affairs",edu:"Bachelor of English (TESOL) Hons. — UNITAR International University",style:"Conventional methods with a sprinkle of modern technology; student-centred with a jovial environment.",about:"Full of burning passion for both teaching and cooking; loves to talk yet a self-described introvert who treats every student as if their opinion matters most.",quote:"The best brains of the nation can be found on the last benches of the classroom. — A.P.J. Abdul Kalam",rating:"4.95",mbti:"INFP",mtype:"Inspirer",joined:"2018",passion:"Writing; Dancing",hobbies:"People-watching over a good coffee"},
     tiera:{title:"Ms",n:"Tiera",img:"assets/team/tiera.png",role:"Head of Professional Development",spec:"Teacher Training",edu:"Masters in Education (Management & Administration) - TESL — Universiti Teknologi Malaysia (UTM)",style:"A facilitator who develops critical thinking; a great listener who uses humour — students say it feels like a therapy session.",about:"Enthusiastic, dynamic trainer with strong communication, management and team-building skills, designing varied programs and her own methods so learners truly absorb the material.",quote:"Wheresoever you go, go with all your heart. If you always give, you will always get.",rating:"4.96",mbti:"INFP",mtype:"Inspirer",joined:"2018",passion:"Teaching; understanding people",hobbies:"Reading; Vlogging"},
-    lala:{title:"Ms",n:"Lala",img:"assets/team/lala.png",role:"Senior Teacher",spec:"Adult English Communication",edu:"Masters of Education (TESL) — Universiti Teknologi Malaysia (UTM)",style:"Humorous and active for a stress-free classroom; encourages students to converse naturally with one another.",about:"An ambivert — active and talkative in class, relaxed at home — who loves bonding with students and building genuine connections.",quote:"No act of kindness, no matter how small, is ever wasted.",rating:"4.90",mbti:"INTJ",mtype:"Strategist",joined:"2022",passion:"Connecting with students; art, especially crochet and architecture",hobbies:"Watching YouTube videos"},
-    kuna:{title:"Ms",n:"Kuna",img:"assets/team/kuna.png",role:"Senior Teacher",spec:"Adult English Communication",edu:"Master of Science (Chemical Engineering) — Universiti Teknologi MARA (UiTM)",style:"Compliment first, then challenge; Self-Determination Theory, rubrics, constructive feedback, roleplay and VARK (Visual / Auditory / Read-Write / Kinaesthetic) methods.",about:"Always learning and being her own student; believes kindness is free and focuses on helping every student think outside the box.",quote:"Being highly intellectual and well-mannered is really seductive and attractive.",rating:"4.94",mbti:"ENFJ",mtype:"Inspirer",joined:"2023",passion:"Skincare, wellness, classical music & books, the sound of waves",hobbies:"Meditation; reading; piano; learning languages"},
+    lala:{title:"Ms",n:"Lala",img:"assets/team/lala.png",role:"Senior Teacher",spec:"Adult English Communication",edu:"Masters of Education (TESL) — Universiti Teknologi Malaysia (UTM)",style:"Humorous and active for a stress-free classroom; encourages students to converse naturally with one another.",about:"An ambivert — active and talkative in class, relaxed at home — who loves bonding with students and building genuine connections.",quote:"No act of kindness, no matter how small, is ever wasted.",rating:"4.99",mbti:"INTJ",mtype:"Strategist",joined:"2022",passion:"Connecting with students; art, especially crochet and architecture",hobbies:"Watching YouTube videos"},
+    kuna:{title:"Ms",n:"Kuna",img:"assets/team/kuna.png",role:"Senior Teacher",spec:"Adult English Communication",edu:"Master of Science (Chemical Engineering) — Universiti Teknologi MARA (UiTM)",style:"Compliment first, then challenge; Self-Determination Theory, rubrics, constructive feedback, roleplay and VARK (Visual / Auditory / Read-Write / Kinaesthetic) methods.",about:"Always learning and being her own student; believes kindness is free and focuses on helping every student think outside the box.",quote:"Being highly intellectual and well-mannered is really seductive and attractive.",rating:"4.99",mbti:"ENFJ",mtype:"Inspirer",joined:"2023",passion:"Skincare, wellness, classical music & books, the sound of waves",hobbies:"Meditation; reading; piano; learning languages"},
     mima:{title:"Ms",n:"Mima",img:"assets/team/mima.png",role:"Teacher",spec:"Adult English Communication",edu:"Diploma — Politeknik Mukah",style:"Demonstrator (pictures, music, activities, role play) and open discussion across varied topics.",about:"Reliable, conscientious and caring — open-minded, patient, prompt, and always approachable, encouraging and supportive.",quote:"The dream begins with a teacher who believes in you, who leads you to the next plateau, sometimes poking you with a sharp stick called 'truth.' — Dan Rather",rating:"4.95",mbti:"ENFP",mtype:"Inspirer",joined:"2023",passion:"Singing — her first love and the secret of her energy",hobbies:"Singing & reading"}
   },
   /* 各中心 × 各 Level 的任课老师（序号：0=P1 1=L1 2=L2 3=L3 4=L4）
@@ -1779,53 +1784,61 @@ var CONFIG={
      a:{zh:"不会。成人可能不像学生时代那样习惯背诵和考试，但成人有一样年轻人没有的东西：明确的使用场景。<br><br>你知道自己要在什么时候用英文——开会、见客户、面试。目标清楚，学起来反而更有方向，不会白练。<br><br>课程也是照成人的方式设计的：从实际需要出发、从做得到的步骤开始，不用跟任何人比。<br><br>重点不是几岁开始，是有没有用对方法。",
         en:"No. Adults may be less used to memorising and exams than students were — but adults have something younger learners don't: a clear context for using it.<br><br>You know exactly when you'll need English — meetings, clients, interviews. A clear target gives your learning direction, so nothing is wasted.<br><br>The course is designed for adults too: starting from real needs and steps you can actually take, with nobody to compare yourself against.<br><br>What matters isn't the age you start. It's whether the method fits."}}
   ],
-  /* ===== 学员评价（先用示范内容，之后换成真实的） =====
-     按老师键名分组；没有该老师的资料时会用 TEACHER_SAYS_DEFAULT。
-     格式：{n:"学员名", lv:"Level 2", zh:"中文评价", en:"English"} */
+  /* ===== 学员真实评价（来自 TOUCH 课后评分系统） =====
+     格式：{n:"学员名", zh:"中文", en:"原文"}；en 是学员真正写的原句，zh 是对照翻译 */
   TEACHER_SAYS_DEFAULT:[
-    {n:"Wei Ming", lv:"Level 2", zh:"老师很有耐心，我讲错了也不会觉得尴尬，慢慢就敢开口了。", en:"Very patient — I never felt embarrassed making mistakes, so I started speaking up."},
-    {n:"Shirley", lv:"Level 1", zh:"课堂节奏刚刚好，每次都有练到，不是只听老师讲。", en:"The pace is just right — every class I actually practise, not just listen."}
+    {n:"Boay Ching Wen", zh:"课题很有意思，也很贴近我们上班族的实际情况。讨论很投入，内容实用。谢谢老师一路上的鼓励和引导。", en:"The topics were very interesting and relevant to us as working adults. Really enjoyed the discussions and found the content useful and practical. Thank you, teacher for always encouraging and guiding us throughout the class."}
   ],
   TEACHER_SAYS:{
-    mima:[
-      {n:"Jia Hui", lv:"Level 1", zh:"Ms Mima 很会带气氛，上课不紧张，我第一次敢在班上讲完一整段。", en:"Ms Mima keeps the room relaxed — it was the first time I finished a whole paragraph in class."},
-      {n:"Kelvin", lv:"Level 2", zh:"她会记得我上一堂讲错的地方，下一堂再带我练一次。", en:"She remembers what I got wrong last class and walks me through it again."}
-    ],
-    nita:[
-      {n:"Sharon", lv:"Level 3", zh:"Ms Nita 讲解很有条理，复杂的东西被她拆得很好懂。", en:"Ms Nita explains in a very structured way — she breaks complex things down clearly."},
-      {n:"Andrew", lv:"Level 3", zh:"她会追问「为什么」，逼我把理由讲清楚，开会真的用得上。", en:"She keeps asking why, pushing me to give reasons — it really shows up in meetings."}
-    ],
-    yoha:[
-      {n:"Pei Shan", lv:"Level 2", zh:"Ms Yoha 很鼓励人，我从不敢讲到现在会主动回答。", en:"Ms Yoha is very encouraging — I went from silent to answering on my own."},
-      {n:"Daniel", lv:"Level 1", zh:"她纠正的方式很温和，不会让人觉得被打断。", en:"She corrects gently — it never feels like being interrupted."}
-    ],
-    rajan:[
-      {n:"Michelle", lv:"Level 3", zh:"Mr Rajan 会用真实的职场例子，练完隔天就能用在公司。", en:"Mr Rajan uses real workplace examples — I used them at work the next day."},
-      {n:"S. Kumar", lv:"Level 4", zh:"他对 presentation 的反馈很直接，知道自己要改哪里。", en:"His presentation feedback is direct — I know exactly what to fix."}
-    ],
-    mai:[
-      {n:"Yee Ling", lv:"Level 1", zh:"Ms Mai 很细心，会照顾到每个人有没有跟上。", en:"Ms Mai is attentive — she checks that everyone is keeping up."},
-      {n:"Farid", lv:"Level 2", zh:"上课有很多开口的机会，不是坐着听而已。", en:"Lots of chances to speak — you're not just sitting and listening."}
-    ],
-    simran:[
-      {n:"Hui Xin", lv:"Level 2", zh:"Ms Simran 讲课很生动，一堂课过得很快。", en:"Ms Simran makes class lively — the time flies."},
-      {n:"Raj", lv:"Level 1", zh:"她很会举例子，抽象的东西一下就懂了。", en:"She's great with examples — abstract things click immediately."}
-    ],
-    lala:[
-      {n:"Wen Jie", lv:"Level 2", zh:"Ms Lala 很亲切，问她问题从来不会觉得麻烦。", en:"Ms Lala is warm — asking her questions never feels like a bother."},
-      {n:"Adeline", lv:"Level 3", zh:"她会针对我的弱点给练习，进步看得见。", en:"She targets my weak spots with practice — the progress shows."}
-    ],
-    yaamini:[
-      {n:"Boon Keat", lv:"Pre-Beginner", zh:"我完全零基础，Ms Yaamini 从最简单的开始带，完全跟得上。", en:"I started from zero — Ms Yaamini began with the basics and I could follow."},
-      {n:"Siti", lv:"Level 1", zh:"线上课也很有互动，不会觉得在看影片。", en:"Even online it's interactive — it never feels like watching a video."}
+    darshni:[
+      {n:"Cheam Zhi Chi", zh:"这堂课让我受益匪浅，关于「职业」这个问题，没有对与错的答案。真诚、无评判的交流让我更喜欢这堂课的氛围。每一堂课都让我在学习英文的同时，也在整理自己的思绪，以及敢于表达自己的看法。", en:"I gained a lot from this class — on the question of \u201Ccareer\u201D there is no right or wrong answer. The sincere, non-judgemental exchange made me love the atmosphere of this class. Every lesson lets me learn English while also sorting out my own thoughts, and daring to voice my own views."},
+      {n:"Eva Tan", zh:"Ms Darshni，今天的课我真的很享受。学到很多，特别是怎么根据每个人的意见把话讲得更到位。谢谢你这么棒的一堂课！", en:"Hi Ms. Darshni! I really enjoyed your class today. I learned so much from the lesson, especially regarding how to deliver well based on the individual comments. Thank you for such a great session!"},
+      {n:"Teo Yee Wan", zh:"能上到老师的课真的很棒。我喜欢你的教学方式，还有你讨论的课题——在我的生活里真的用得上。", en:"It was very awesome to having you Teacher. I like your teaching technique and the lesson or topic you discuss for. It was very useful in my life."}
     ],
     kuna:[
-      {n:"Chee Wei", lv:"Level 2", zh:"Ms Kuna 很有条理，每堂课都知道自己学到什么。", en:"Ms Kuna is very organised — I always know what I learned each class."},
-      {n:"Nurul", lv:"Level 2", zh:"她的发音示范很清楚，跟着念进步很快。", en:"Her pronunciation modelling is clear — following along improved me fast."}
+      {n:"Lim Bing Zhi", zh:"今天是我最后一堂课。我想跟 Ms Kuna 说声谢谢，因为这段期间我学到很多知识和词汇。这些学到的东西让我和别人沟通时自在很多。再次谢谢你，后会有期。", en:"Today is my last class. I would like to say Thank you to Ms Kuna. This is because I have learned a lot of knowledge and vocab during this period. All the things that I learned from here help me feel more comfortable when I communicate with others. So, thanks again. See you when I see you."},
+      {n:"Jasmine Goh Jia Min", zh:"Ms Kuna，真的很享受你的课，也从你身上学到很多 😊 最难忘的是每次角色扮演，你都会说一声「Good！」来鼓励我们……你的声音也很温柔。Bye Bye 👋", en:"Hi Ms Kuna, really enjoy your class and learned a lot from you. \uD83D\uDE0A The memorable thing is every time we did role play, you would say \u201CGood!\u201D to encourage us... and your voice is also very soft and gentle. Bye Bye \uD83D\uDC4B"},
+      {n:"Boay Ching Wen", zh:"课题很有意思，也很贴近我们上班族的实际情况。讨论很投入，内容实用。谢谢老师一路上的鼓励和引导。", en:"The topics were very interesting and relevant to us as working adults. Really enjoyed the discussions and found the content useful and practical. Thank you, teacher for always encouraging and guiding us throughout the class."}
     ],
-    darshni:[
-      {n:"Vincent", lv:"Level 3", zh:"Ms Darshni 会挑战我的想法，讨论课很过瘾。", en:"Ms Darshni challenges my thinking — the discussions are genuinely engaging."},
-      {n:"Grace", lv:"Level 4", zh:"她帮我把表达从「对」变成「有说服力」。", en:"She took my English from correct to convincing."}
+    lala:[
+      {n:"Lai Yit Wan", zh:"谢谢 Ms Lala 今天的口说课。谢谢这堂课让我有机会开口，我看到自己进步了——讲英文时句尾不再加「lah」。再次谢谢你，Ms Lala，超爱你的！ 😘", en:"Thank you Ms Lala for the speaking lesson today. Thank you so much for the lesson that I have the opportunity to speak out. I can see I improved myself to speak English without \u201Clah\u201D at the end of the sentence. Thank you again, Ms La La. Love you so much! \uD83D\uDE18"},
+      {n:"Eng Kian Hao", zh:"今天的课比较着重在职场上真正用得到的技巧。这堂课收获很多！", en:"Today's lesson focuses more on the practical skills that we will need in the workforce. Enjoyed a lot from the class!"},
+      {n:"Wong Jia Xuan", zh:"Lala 老师很有耐心。我们听不懂的时候，她会再解释一次。谢谢老师。", en:"Teacher Lala was very patient. They explained things again if we didn't understand. Thank you, teacher."}
+    ],
+    mai:[
+      {n:"Goh Lee Chin", zh:"你是一位很棒的老师。你的课总是让人投入，也让学英文变得有趣。谢谢你一直鼓励我们做到最好。", en:"You're an amazing teacher. Your lessons are always engaging, and you make learning English fun. Thank you for always encouraging us to do our best."},
+      {n:"Shua Chern Thing", zh:"我几乎三个星期没来上课……本来以为自己的英文「习惯」都散掉了。结果一回到课堂，整个人马上就接回原本的状态。迟到的教师节快乐，Ms Mai！", en:"Almost three weeks I didn't join the class... Thought I fell apart of my English \u201CHabit\u201D. When I attend the class my soul straight adapt my habits... ^.^ Belated Happy Teacher Day wishes Ms. MAI!!!"},
+      {n:"Goh Lee Chin", zh:"我很欣赏老师每次都用破冰活动开场，气氛轻松又有互动，学起来更有效果。", en:"I really appreciate how the teacher begins lessons with ice-breakers, creating a relaxed and interactive atmosphere that makes learning more effective."}
+    ],
+    mima:[
+      {n:"Lowpinfei", zh:"今天是我第二堂课。Mima 老师很有耐心，课上得很有趣，大家都很投入。", en:"Today was my second class. Teacher Mima is very patient, her classes are very interesting, and everyone is very enthusiastic."},
+      {n:"Joey Ling", zh:"老师亲切、有耐心，而且会确保每个学生都参与进来。谢谢老师。", en:"The teacher is friendly, patient, and makes sure every student is included. Thank you Teacher."},
+      {n:"Brenda Wong", zh:"Mima 老师会推着我把学习的水平往上提。", en:"Teacher Mima helps me to push my level of learning to a higher standard."}
+    ],
+    nita:[
+      {n:"Santhiny", zh:"Ms Nita 是一位很有耐心、亲切又会鼓励人的老师。她的课很享受、也容易懂。她把每样东西都讲得很清楚，让我讲英文时更有信心。很感谢她正面的教学方式和支持，期待跟她学更多。", en:"Ms Nita is a very patient, friendly, and encouraging teacher. Her class was enjoyable and easy to understand. She explains everything clearly and makes me feel more confident speaking in English. I really appreciate her positive teaching style and support. Looking forward to learning more with her."},
+      {n:"Brenda Wong", zh:"Nita 老师对每一位学生都很有耐心，会细细说明他们的学习情况。", en:"Teacher Nita was very patient with each of the students by detailing their learning experience."},
+      {n:"Tan Jie Queen", zh:"Nita 老师会教很多同义词，并解释它们的意思，帮我们把表达能力提升上来。", en:"Teacher Nita teaches a lot of same-meaning words that help us improve talking skills, explaining the meaning of the words."}
+    ],
+    simran:[
+      {n:"Hong Chai Ping", zh:"这堂英文课很有意思、也很享受。老师把每样东西都讲得很清楚，还鼓励每个人参与。我学到新词汇，讲英文也更有信心了。课程很吸引人，班上的气氛友善又有支持感。", en:"The English class was very interesting and enjoyable. The teacher explained everything clearly and encouraged everyone to participate. I learned new vocabulary and improved my confidence in speaking English. The lessons were engaging, and the classroom atmosphere was friendly and supportive."},
+      {n:"Karen Zeng Rong", zh:"Ms Simran 是个好老师，我们可以在她面前讲英文，不用担心讲错。", en:"Ms. Simran is a good teacher, we can speak English in front of her and don't worry about being wrong."},
+      {n:"Tan Chiew Ling", zh:"老师的评语让我很感动。我自己觉得是缺点的地方，Ms Simran 却看到了正面的那一面。", en:"...teacher's comments make me feel touching. Ms Simran can see the positive way which I think is negative in my negotiation skills."}
+    ],
+    yaamini:[
+      {n:"Mervyn Yu", zh:"老师把我们常搞混的词讲解得很清楚，像 borrow 和 lend、save for 和 save on、spree 这些。以后在生活中跟人沟通，我会用对了。谢谢 Ms Yaamini。", en:"Teacher has given a good explanation for words we usually confuse, which are borrow vs lend, save for / save on, spree... I will use them and not use them wrongly when communicating with people in my life. Thx Ms. Yaamini."},
+      {n:"Lim Nan Soon", zh:"你的教学品质很好，课讲得清楚、有吸引力，也容易理解。", en:"Your teaching quality is excellent, and your lessons are always clear, engaging, and easy to understand."},
+      {n:"Sokichiro Murai", zh:"透过简单的问题，我学会了怎么把一段对话延续下去。这是很实际的练习，我试着在提问和回答时都讲出比较长的句子。", en:"Through simple questions, I learned how to keep a conversation going with others. It was a practical exercise in which I tried to construct relatively long sentences for both my questions and answers."}
+    ],
+    yoha:[
+      {n:"Wong Chew Siang", zh:"老师每堂课后都会给我们每个人评估，点出可以加强的地方和进步的部分，我觉得这点非常好，让我们清楚知道哪里需要提升。谢谢老师的用心。", en:"The teacher always evaluates each of us after class, identifying areas for improvement and progress, which I find excellent. This helps us understand where we need to enhance our skills. Thank you for your thoughtful care."},
+      {n:"Tham Sinn Yee", zh:"这堂课轻松又享受，而且对我们的生活真的很有帮助。我很喜欢这堂课。", en:"This class is relax and enjoyable, and it's also very helpful to our lives. I really enjoy this class."},
+      {n:"Lee Yee Kee", zh:"课题很有意思。老师总是会点不同的人回答问题。", en:"Topic is interesting. Teacher always cues different persons to answer questions."}
+    ],
+    rajan:[
+      {n:"Tan Hong Keat", zh:"今天是我第一堂 Level 3 的课，本来有点紧张，但老师人很好。他一直问我问题，可能因为是第一次见面，反而让我没那么紧张了。", en:"Today was my first Level 3 class, and I was a little nervous, but the teacher was very nice. He kept asking me questions, and maybe because it was the first time he had met me, it made me less nervous."},
+      {n:"Tan Hong Keat", zh:"课堂的氛围很轻松、很自在，我真的很喜欢。这堂课也学到很多新词汇。", en:"The classroom vibe is very chill and relax, I really like it. I also learned a lot of new vocabulary in this class."},
+      {n:"Nurhazimah Husna", zh:"谢谢 Sir，很高兴能在你的班上。我很快会再上你的 Level 3 课程。 🥰", en:"Thank you Sir, really glad to be in your class. I will take some Level 3 classes from you soon. \uD83E\uDD70"}
     ]
   },
   LESSONS_PER_MONTH:12,  /* 时长换算：48 堂 = 4 个月（即每月 12 堂） */
@@ -2568,7 +2581,7 @@ window.__openTimetable=openTimetable;
       String(st).replace(/[&<>"]/g,'')+'</b></div></div>';
   }
   if(T){
-    html+='<button class="yclass__row yclass__t" id="ytBtn"><span class="yclass__av">'+(T.img?'<img loading="lazy" src="'+T.img+'" alt="" onerror="this.remove()">':'')+'<em>👩‍🏫</em></span>'+
+    html+='<button class="yclass__row yclass__t" id="ytBtn"><span class="yclass__av">'+(T.img?'<img src="'+T.img+'" alt="" onload="this.parentNode.classList.add(\'has-photo\')" onerror="this.remove()">':'')+'<em>👩‍🏫</em></span>'+
       '<div><span class="yclass__lb"><span class="zh">你的老师</span><span class="en">Your teacher</span></span><b>'+tname(T)+'</b>'+
       (T.rating?'<i>\u2605 '+T.rating+'</i>':'')+'</div><span class="yclass__go">\u203a</span></button>';
   }
@@ -2622,7 +2635,7 @@ window.__openTimetable=openTimetable;
     }).join('');
     body.innerHTML=
       '<div class="tpop__head">'+
-        '<span class="tpop__orb">'+(T.img?'<img loading="lazy" src="'+T.img+'" alt="'+esc2(T.n)+'" onerror="this.remove()">':'')+esc2((T.n||'?').charAt(0))+'</span>'+
+        '<span class="tpop__orb">'+(T.img?'<img src="'+T.img+'" alt="'+esc2(T.n)+'" onload="this.parentNode.classList.add(\'has-photo\')" onerror="this.remove()">':'')+'<i class="tpop__ph">'+esc2((T.n||'?').charAt(0))+'</i></span>'+
         '<div><div class="tpop__name">'+esc2(tname(T))+'</div>'+
           '<div class="tpop__tags">'+
             (T.mbti?'<span class="ttag">'+esc2(T.mbti)+'</span>':'')+
