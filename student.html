@@ -193,6 +193,46 @@ mark::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:8px;ba
   .hero__grid{margin-bottom:0}
 }
 
+/* ===== 个性化首屏 ===== */
+.pers{max-width:600px}
+.pers__kick{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:12px}
+.pers__h{font-size:clamp(27px,4.4vw,40px);line-height:1.24;letter-spacing:-.02em;color:var(--ink);font-weight:900}
+.pers__h b{color:var(--blue)}
+.pers__now{list-style:none;margin:22px 0 0;display:flex;flex-direction:column;gap:10px}
+.pers__now li{position:relative;padding-left:28px;font-size:15px;font-weight:600;color:var(--ink2);line-height:1.6}
+.pers__now li::before{content:"";position:absolute;left:0;top:4px;width:18px;height:18px;border-radius:50%;background:rgba(224,48,59,.12);
+  border:1px solid rgba(224,48,59,.3)}
+.pers__now li::after{content:"";position:absolute;left:6px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--red)}
+.pers__start{margin-top:26px;display:inline-flex;flex-direction:column;gap:6px;padding:16px 22px;border-radius:18px;
+  background:linear-gradient(135deg,rgba(31,120,210,.12),rgba(255,255,255,.7));border:1px solid rgba(31,120,210,.26);
+  box-shadow:0 16px 36px -22px rgba(21,53,123,.45)}
+.pers__start .lb{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.pers__start .lv{font-size:20px;font-weight:900;color:var(--ink);display:flex;align-items:center;gap:9px}
+.pers__start .dot{width:13px;height:13px;border-radius:50%;flex:none}
+.pers__start .ds{font-size:13.5px;color:var(--ink2);font-weight:600;line-height:1.55;max-width:340px}
+
+/* ===== 我们听到的你 / 为什么这一级 ===== */
+.heard{padding:46px 0 6px}
+.heard__grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:900px;margin:0 auto}
+@media(max-width:760px){.heard__grid{grid-template-columns:1fr}}
+.heard__card{position:relative;padding:26px 26px 24px;border-radius:22px;background:var(--glass);border:1px solid var(--gbrd);box-shadow:var(--sh)}
+.heard__card--why{background:linear-gradient(160deg,rgba(31,120,210,.08),rgba(255,255,255,.7))}
+.heard__h{display:block;font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-bottom:12px}
+.heard__body{font-size:14.5px;line-height:1.78;color:var(--ink)}
+.heard__sign{display:block;margin-top:14px;font-size:12.5px;font-weight:700;color:var(--blue)}
+.heard__foot{margin-top:14px;font-size:12px;color:var(--mut);line-height:1.6}
+.focusbar{max-width:900px;margin:18px auto 0;padding:22px 26px;border-radius:22px;display:grid;grid-template-columns:minmax(200px,300px) 1fr;gap:24px;
+  background:linear-gradient(150deg,rgba(255,255,255,.82),rgba(244,248,254,.78));border:1px solid var(--gbrd);box-shadow:var(--sh)}
+@media(max-width:760px){.focusbar{grid-template-columns:1fr;gap:16px}}
+.focusbar__lb{display:block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:7px}
+.focusbar__l b{font-size:18px;line-height:1.45;color:var(--ink);font-weight:800}
+.focusbar__how{list-style:none;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+@media(max-width:560px){.focusbar__how{grid-template-columns:1fr}}
+.focusbar__how li{position:relative;padding-left:22px;font-size:13.5px;font-weight:600;color:var(--ink2);line-height:1.55}
+.focusbar__how li::before{content:"";position:absolute;left:0;top:5px;width:14px;height:14px;border-radius:50%;background:var(--blue);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/11px no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/11px no-repeat}
+
 /* FAQ: lead line, concern chips */
 .faq__lead{max-width:620px;margin:0 auto 22px;text-align:center;font-size:14px;line-height:1.7;color:var(--ink2)}
 .faqmore{max-width:760px;margin:26px auto 0;text-align:center}
@@ -461,7 +501,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .ttp.is-mine{opacity:1;box-shadow:0 3px 8px -3px var(--tc),0 0 0 1.5px rgba(255,255,255,.9)}
 .ttnote{margin-top:10px;font-size:11.5px;color:var(--mut);font-weight:600;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 
-/* 你的老师 / 第一堂课 */
+/* 你的老师 */
 .yclass{margin-top:18px;display:flex;flex-direction:column;gap:8px}
 .yclass__row{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:11px 13px;border-radius:14px;
   background:rgba(255,255,255,.7);border:1px solid rgba(31,120,210,.18);box-shadow:0 8px 20px -16px rgba(21,53,123,.4)}
@@ -571,7 +611,10 @@ body.te-en .jnote__who::after{content:" says"}
   mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/13px no-repeat}
 .jstage__future{margin-top:18px;padding:14px 16px;border-radius:14px;background:rgba(31,120,210,.06);font-size:14px;font-weight:700;color:var(--ink);line-height:1.55}
 .jstage__future b{color:var(--lc,#1F78D2)}
-.jstage__vids{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.jlike{margin-top:18px;font-size:13px;font-weight:700;color:var(--ink2);padding-left:14px;border-left:3px solid var(--lc,#1F78D2);line-height:1.6}
+.heard__card--note{background:linear-gradient(160deg,rgba(255,251,235,.95),rgba(255,247,224,.8));border-color:rgba(210,162,60,.34)}
+.heard__card--note .heard__h{color:#8a6516}
+.jstage__vids{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
 .jvfig{display:flex;flex-direction:column;gap:8px;margin:0}
 .jvcap{font-size:12px;line-height:1.5;font-weight:600;color:var(--ink2)}
 .jvid{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;cursor:pointer;background:#0E2A63;width:100%;border:none;padding:0;transition:.2s}
@@ -1528,7 +1571,7 @@ var QP=(function(){
     var f=raw.split('~');
     if(/^[a-z]{1,2}:/.test(f[0]||'')){
       /* 新版：键值对 a:marco~n:Ken~o:顾问的话 */
-      var MAP={a:'adv',n:'name',f:'from',t:'to',l:'les',c:'loc',d:'due',p:'p',g:'lang',e:'teacher',s:'start',o:'note'};
+      var MAP={a:'adv',n:'name',f:'from',t:'to',l:'les',c:'loc',d:'due',p:'p',g:'lang',e:'teacher',o:'note',u:'ca',v:'cs'};
       f.forEach(function(it){
         var i2=it.indexOf(':'); if(i2<1)return;
         var k=MAP[it.slice(0,i2)]; var v=it.slice(i2+1).trim();
@@ -1555,18 +1598,18 @@ var CONFIG={
      链接：?from=1&to=3&name=Ken   不带则用默认 DEFAULT_FROM/TO */
   /* 痛点文案（与 console 同步，按 level 分组，每级 4 条；链接 ?p=0,1 高亮对应几条） */
   LEVEL_PAINS_ZH:[
-    ["缺乏基础词汇和简单句子的使用能力，无法表达日常与职场需求","说英语时害怕出错，缺乏开口的勇气","看到复杂的句子或词汇会感到困惑，难以理解或记住","学过的单词容易忘记，难以在对话中活用"],
-    ["可以使用基础的英语词汇和句子，但句式单一，表达不够自然","表达需求时缺乏准确性或细节，影响交流","缺乏语音连贯性，容易卡顿或重复词汇","理解稍复杂的语法时感到困难，例如时态变化"],
-    ["能表达基本意思，但句子结构简单、语气较直接，不符合职场或社交场合的表达方式","表达意见时不太会衔接思路，讲话略显突然","不太会在职场或社交场合延伸话题","对职场表达缺乏信心，容易紧张"],
-    ["有一定的表达能力，但缺乏说服力","在正式场合的表达中缺乏自信","容易被复杂的问题或讨论打断思路","无法准确表达抽象或细腻的情感或想法"],
-    ["能够用英语表达复杂想法，但语言不够自然或缺乏吸引力","面对新话题或跨领域讨论时反应慢，难以灵活应对","写作或表达时无法灵活调整语言风格（正式／非正式）","在快速讨论或多人对话中容易思路混乱，无法吸引注意"]
+    ["缺乏基础词汇和简单句子的使用能力，无法表达日常与职场需求","说英语时害怕出错，缺乏开口的勇气","看到复杂的句子或词汇会感到困惑，难以理解或记住","学过的单词容易忘记，难以在对话中活用","缺乏基础发音能力","缺乏基础英语表达逻辑"],
+    ["可以使用基础的英语词汇和句子，但句式单一，表达不够自然","表达需求时缺乏准确性或细节，影响交流","缺乏语音连贯性，容易卡顿或重复词汇","理解稍复杂的语法时感到困难，例如时态变化","能够理解简单英语内容，但面对正常语速时容易遗漏重点","表达方式较依赖固定句型，面对不同情境时难以灵活变化"],
+    ["能表达基本意思，但句子结构简单、语气较直接，不符合职场或社交场合的表达方式","表达意见时不太会衔接思路，讲话略显突然","不太会在职场或社交场合延伸话题","对职场表达缺乏信心，容易紧张","能够表达想法，但词汇选择较有限，容易重复使用简单常用的词汇","能够参与基本交流，但面对突发问题时难以快速组织语言回应"],
+    ["有一定的表达能力，但缺乏说服力","在正式场合的表达中缺乏自信","容易被复杂的问题或讨论打断思路","无法准确表达抽象或细腻的情感或想法","表达观点时缺乏清晰结构，导致信息重点不够突出","能够表达自己的想法，但缺乏回应与影响他人的沟通技巧"],
+    ["能够用英语表达复杂想法，但语言不够自然或缺乏吸引力","面对新话题或跨领域讨论时反应慢，难以灵活应对","写作或表达时无法灵活调整语言风格（正式／非正式）","在快速讨论或多人对话中容易思路混乱，无法吸引注意","能够清楚表达观点，但缺乏故事性与情感连接，难以留下深刻印象","在领导沟通或高阶讨论中，难以建立有深度、有依据的观点表达"]
   ],
   LEVEL_PAINS_EN:[
-    ["Limited basic vocabulary and simple sentences; unable to express everyday and workplace needs","Afraid of making mistakes and lacking the courage to speak","Confused by complex sentences or vocabulary; hard to understand or remember","Words learned are quickly forgotten and hard to use in conversation"],
-    ["Can use basic vocabulary and sentences, but the patterns are repetitive and expression is not natural","Lack of accuracy or detail when expressing needs, affecting communication","Speech lacks flow \u2014 frequent pauses or repeated words","Difficulty with slightly complex grammar, e.g. tense changes"],
-    ["Can express basic meaning, but sentences are simple and the tone too direct for workplace or social settings","Ideas don\u2019t connect well, so speech feels abrupt","Unsure how to extend topics in workplace or social settings","Low confidence and nervousness in workplace expression"],
-    ["Reasonable expression skills, but lacking persuasiveness","Lack of confidence in formal settings","Train of thought easily broken by complex questions or discussion","Unable to express abstract or nuanced feelings and ideas accurately"],
-    ["Can express complex ideas, but the language lacks polish or appeal","Slow to respond on new or cross-domain topics","Unable to switch styles flexibly (formal / informal)","Loses the thread in fast or multi-person discussions and struggles to hold attention"]
+    ["Limited basic vocabulary and simple sentences; unable to express everyday and workplace needs","Afraid of making mistakes and lacking the courage to speak","Confused by complex sentences or vocabulary; hard to understand or remember","Words learned are quickly forgotten and hard to use in conversation","Limited basic pronunciation ability","Limited grasp of basic English sentence logic"],
+    ["Can use basic vocabulary and sentences, but the patterns are repetitive and expression is not natural","Lack of accuracy or detail when expressing needs, affecting communication","Speech lacks flow \\u2014 frequent pauses or repeated words","Difficulty with slightly complex grammar, e.g. tense changes","Can follow simple English, but misses key points at natural speed","Relies on fixed sentence patterns; hard to adapt across situations"],
+    ["Can express basic meaning, but sentences are simple and the tone too direct for workplace or social settings","Ideas don\\u2019t connect well, so speech feels abrupt","Unsure how to extend topics in workplace or social settings","Low confidence and nervousness in workplace expression","Can express ideas, but vocabulary is limited and repetitive","Can hold a basic conversation, but struggles to respond quickly to unexpected questions"],
+    ["Reasonable expression skills, but lacking persuasiveness","Lack of confidence in formal settings","Train of thought easily broken by complex questions or discussion","Unable to express abstract or nuanced feelings and ideas accurately","Ideas lack a clear structure, so the main point doesn't stand out","Can state your view, but lacks the skills to respond to and influence others"],
+    ["Can express complex ideas, but the language lacks polish or appeal","Slow to respond on new or cross-domain topics","Unable to switch styles flexibly (formal / informal)","Loses the thread in fast or multi-person discussions and struggles to hold attention","Clear, but lacking story and emotional connection — not memorable","In leadership or senior discussion, struggles to build a deep, well-grounded argument"]
   ],
   /* 老师资料（与 console TEAM 同步）：链接 ?t=键名 显示「你的老师」 */
   TEACHERS:{
@@ -1679,11 +1722,11 @@ var CONFIG={
   /* ===== FAQ 知识库（按顾虑筛选，语气依顾问训练手册：共情 → 学习逻辑 → 课程机制 → 画面；网页版不用反问） =====
      lv: 该 level 的起手题（-1 = 不限）  ct: 顾虑标签  core: 一定显示 */
   PAIN_CONCERN:{
-    0:["BUILD","SPEAK_FEAR","GRAMMAR","MEMORY"],
-    1:["BUILD","BUILD","FLOW","GRAMMAR"],
-    2:["WORKPLACE","FLOW","WORKPLACE","CONFIDENCE"],
-    3:["PERSUADE","CONFIDENCE","REACT","PERSUADE"],
-    4:["PERSUADE","REACT","WORKPLACE","REACT"]
+    0:["BUILD","SPEAK_FEAR","GRAMMAR","MEMORY","SPEAK_FEAR","BUILD"],
+    1:["BUILD","BUILD","FLOW","GRAMMAR","FLOW","BUILD"],
+    2:["WORKPLACE","FLOW","WORKPLACE","CONFIDENCE","BUILD","REACT"],
+    3:["PERSUADE","CONFIDENCE","REACT","PERSUADE","PERSUADE","REACT"],
+    4:["PERSUADE","REACT","WORKPLACE","REACT","PERSUADE","PERSUADE"]
   },
   FAQ_GROUPS:[
     {k:"doubt", zh:"会不会学不会", en:"Can I actually do this", ct:["SELF_DOUBT","AGE","MEMORY","SPEAK_FEAR"]},
@@ -1844,6 +1887,81 @@ var CONFIG={
       {n:"Zhi Chi C.", lv:"Level 3", zh:"这堂课让我受益匪浅，关于「职业」这个问题，没有对与错的答案。真诚、无评判的交流让我更喜欢这堂课的氛围。每一堂课都让我在学习英文的同时，也在整理自己的思绪，以及敢于表达自己的看法。", en:"I gained a lot from this class — on the question of \u201Ccareer\u201D there is no right or wrong answer. The sincere, non-judgemental exchange made me love the atmosphere of this class. Every lesson lets me learn English while also sorting out my own thoughts, and daring to voice my own views."},
       {n:"Eva T.", lv:"Level 4", zh:"Ms Darshni，今天的课我真的很享受。学到很多，特别是怎么根据每个人的意见把话讲得更到位。谢谢你这么棒的一堂课！", en:"Hi Ms. Darshni! I really enjoyed your class today. I learned so much from the lesson, especially regarding how to deliver well based on the individual comments. Thank you for such a great session!"}
     ]
+  },
+  /* ===== 个性化引擎：由「勾选的痛点 + Level」驱动，顾问不必打字 =====
+     PAIN_SHORT  首屏三点现况（短句，8–18 字）
+     WHY_LEVEL   为什么建议从这一级开始（纯模板）
+     LEVEL_FOCUS 你现阶段最需要加强 / 会怎样练（cs、ch 没填时用这个） */
+  PAIN_SHORT:{
+    0:[["认得的单词不够用，讲不出需求","Not enough words to say what you need"],
+       ["怕讲错，不太敢开口","Afraid of mistakes, so you stay quiet"],
+       ["句子一长就看不懂","Longer sentences stop making sense"],
+       ["学过的单词，要用时想不起来","Words you've learned don't come when you need them"],
+       ["看到英文不会念","You can see the words but can't say them"],
+       ["讲不出英文的句子顺序","English word order doesn't come naturally yet"]],
+    1:[["讲得出句子，但翻来覆去就那几句","You can make sentences, but always the same few"],
+       ["细节讲不清楚，对方要用猜的","Details go missing, so people have to guess"],
+       ["讲话会卡，一直重复同样的词","You pause a lot and repeat the same words"],
+       ["时态一变就搞混","Tenses get muddled once they shift"],
+       ["正常语速就跟不上，会漏掉重点","At natural speed you miss the key points"],
+       ["只会那几个句型，换个情境就卡","You have a few patterns — a new situation breaks them"]],
+    2:[["讲得出意思，但不够得体","The meaning lands, but the tone isn't quite right"],
+       ["讲话没有铺陈，跳得有点突然","Your points arrive abruptly, with no lead-in"],
+       ["话题聊不下去，很快就断","Conversations run dry after a line or two"],
+       ["在职场上开口会紧张","Speaking up at work makes you nervous"],
+       ["来来去去都是那几个词","You keep reaching for the same few words"],
+       ["被突然一问就答不上来","An unexpected question and you go blank"]],
+    3:[["讲得出来，但没有说服力","You can say it, but it doesn't convince"],
+       ["正式场合就没了底气","Formal settings drain your confidence"],
+       ["被追问就乱了阵脚","Follow-up questions throw you off"],
+       ["细腻的想法讲不精准","Nuanced ideas don't come out precisely"],
+       ["讲了一堆，重点没突出","You say a lot, but the point doesn't land"],
+       ["接不住别人的观点，也影响不了人","You can't respond to others' points, let alone sway them"]],
+    4:[["讲得对，但不够自然、不够有魅力","Correct, but not yet natural or compelling"],
+       ["遇到新话题反应慢","New topics leave you a step behind"],
+       ["正式和轻松的语气转换不来","Switching between formal and casual is hard"],
+       ["多人快速讨论时插不上话","In fast group discussions you can't get in"],
+       ["讲得清楚，但别人记不住","Clear — but nobody remembers it afterwards"],
+       ["高阶讨论里撑不出有依据的观点","In senior discussion your case lacks depth and evidence"]]
+  },
+  WHY_LEVEL:{
+    0:{zh:"你现在最需要的是一个不会有压力的起点。P1 不会一开始就要你讲长句，而是从听懂、跟着说、敢出声开始。这一步扎稳了，后面的句子才盖得上去。",
+       en:"What you need first is a starting point with no pressure. P1 doesn't ask for long sentences on day one — it starts with understanding, copying, and daring to make a sound. Get this solid and the sentences can be built on top."},
+    1:{zh:"你并不是完全没有英文，所以不需要从字母和单词重新开始。你现在缺的是把已经认识的单词组成完整句子的能力。如果直接进 Level 2，你会听得懂话题，但轮到自己延伸说明时会很吃力。",
+       en:"You're not starting from nothing, so there's no need to go back to letters and words. What's missing is turning the words you already know into complete sentences. Jump straight to Level 2 and you'd follow the topic but struggle the moment you had to expand on it."},
+    2:{zh:"你已经讲得出完整句子，所以不必再从基础句型练起。你现在缺的是「顺序」——先讲重点、再给理由和例子。这正是 Level 2 在训练的，比回头练造句更符合你现在的需要。",
+       en:"You can already form complete sentences, so there's no need to drill basic patterns again. What's missing is order — point first, then reason and example. That's exactly what Level 2 trains, and it fits where you are far better than going back a step."},
+    3:{zh:"你讲得清楚，也讲得完整，所以重点不再是「让人听懂」。你现在缺的是分量——立场、理由、证据，以及被追问时稳得住。Level 3 就是把「讲得对」提升到「讲得有说服力」。",
+       en:"You're clear and complete, so being understood is no longer the issue. What's missing is weight — position, reason, evidence, and holding steady under questioning. Level 3 takes you from correct to convincing."},
+    4:{zh:"你已经能有条理地表达和说服，所以不必再练结构。你现在的差距在精准度、语气和影响力——同一句话，怎么讲让人记得住、愿意听下去。这是 Level 4 的重点。",
+       en:"You can already structure and persuade, so structure isn't the gap. What's left is precision, tone and impact — how the same point lands so people remember it and keep listening. That's what Level 4 is for."}
+  },
+  LEVEL_FOCUS:{
+    0:{need:{zh:"先建立「听得懂、敢出声」的安全感",en:"Build the safety to understand and speak up"},
+       how:[["从图片、动作和短句开始，不用先背单词","Start from pictures, gestures and short phrases — no memorising first"],
+            ["听老师示范一次，自己再说一次","Hear the model once, then say it yourself"],
+            ["先讲得出一个词，再讲一句","One word first, then one sentence"],
+            ["和程度相近的同学一班，不会被丢下","You're always with learners at your level"]]},
+    1:{need:{zh:"把已经认识的单词，组成完整的句子",en:"Turn the words you know into complete sentences"},
+       how:[["用固定句型起步：I need to… / I think… because…","Start from fixed frames: I need to… / I think… because…"],
+            ["先模仿，再换成自己的内容","Copy first, then swap in your own content"],
+            ["一次多加一个细节：原因、时间、地点","Add one detail at a time: reason, time, place"],
+            ["先讲完，再改语法——不打断你的表达","Finish first, fix later — you won't be cut off"]]},
+    2:{need:{zh:"讲话有顺序，让人一次就听懂",en:"Give your ideas order, so people get it first time"},
+       how:[["先讲重点，再补理由和例子","Lead with the point, then reason and example"],
+            ["用 O.R.E.O 之类的框架撑住整段话","Use frames like O.R.E.O to hold a whole answer together"],
+            ["把短答案延伸成完整说明","Stretch short answers into full explanations"],
+            ["放进汇报、开会、客户对话里练","Practise it in updates, meetings and client talk"]]},
+    3:{need:{zh:"讲得有分量，被追问也稳得住",en:"Speak with weight — and hold up under questioning"},
+       how:[["立场 → 理由 → 证据 → 回应质疑","Position → Reason → Evidence → Handling pushback"],
+            ["练谈判、说服和不同意见的处理","Drill negotiation, persuasion and disagreement"],
+            ["模拟被追问的场景，练到不慌","Rehearse being challenged until it stops rattling you"],
+            ["用真实职场情境反复演练","Repeat it in real workplace situations"]]},
+    4:{need:{zh:"讲得精准、有影响力，让人愿意听",en:"Be precise and compelling — so people want to listen"},
+       how:[["Presentation 的开场、铺陈与收尾","Opening, building and closing a presentation"],
+            ["外交式表达：不同意也不失礼","Diplomatic phrasing — disagree without friction"],
+            ["看对象调整语气和用词","Adapt tone and wording to your audience"],
+            ["带讨论、处理提问、稳住全场","Lead discussions, handle questions, hold the room"]]}
   },
   LESSONS_PER_MONTH:12,  /* 时长换算：48 堂 = 4 个月（即每月 12 堂） */
   JOURNEY_DEFAULT_FROM:1,
@@ -2337,7 +2455,7 @@ var PSTU=(function(){
   function gainList(l){return '<ul class="jstage__gain">'+l.gain.map(function(g){return '<li>'+esc(g)+'</li>';}).join('')+'</ul>';}
   function phraseFor(i){return i===from?['📍','Today · 现在的你']:(i===to?['⭐','Your Future · 未来的你']:['💪','Next · 下一阶段的你']);}
   /* 顾问勾选的痛点（?p=0,1）+ 顾问的话（?note=） */
-  var PICKED=(function(){var v=(q&&q.get('p'))||'';return v.split(',').map(function(x){return parseInt(x,10);}).filter(function(x){return !isNaN(x)&&x>=0&&x<4;});})();
+  var PICKED=(function(){var v=(q&&q.get('p'))||'';return v.split(',').map(function(x){return parseInt(x,10);}).filter(function(x){return !isNaN(x)&&x>=0&&x<6;});})();
   var NOTE=(function(){var v=(q&&q.get('note'))||'';return v.trim().slice(0,220);})();
   function painsFor(i){
     var isEN=document.body.classList.contains('te-en');
@@ -2580,12 +2698,11 @@ function ttName(k){return TT_NAMES[k]||k;}
 
 window.__openTimetable=openTimetable;
 
-/* 你的老师 + 你的第一堂课：挂在上课地点大卡上 */
+/* 你的老师：挂在上课地点大卡上 */
 (function(){
-  var tk='',st='',loc='',lvFrom=-1;
+  var tk='',loc='',lvFrom=-1;
   try{
     tk=(QP.get('teacher')||'').toLowerCase().replace(/[^a-z]/g,'');
-    st=(QP.get('start')||'').trim().slice(0,60);
     loc=(QP.get('loc')||'').toLowerCase().replace(/[^a-z]/g,'');
     lvFrom=parseInt(QP.get('from'),10); if(isNaN(lvFrom))lvFrom=-1;
   }catch(e){}
@@ -2597,12 +2714,8 @@ window.__openTimetable=openTimetable;
   var hero=document.querySelector('.onlhero__body'); if(!hero)return;
   var T=(CONFIG.TEACHERS||{})[tk];
   function tname(x){return ((x.title?x.title+' ':'')+x.n);}
-  if(!T&&!st)return;
+  if(!T)return;
   var html='<div class="yclass">';
-  if(st){
-    html+='<div class="yclass__row"><span class="yclass__ic">🗓</span><div><span class="yclass__lb"><span class="zh">你的第一堂课</span><span class="en">Your first class</span></span><b>'+
-      String(st).replace(/[&<>"]/g,'')+'</b></div></div>';
-  }
   if(T){
     html+='<button class="yclass__row yclass__t" id="ytBtn"><span class="yclass__av">'+(T.img?'<img src="'+T.img+'" alt="" onload="this.parentNode.classList.add(\'has-photo\')" onerror="this.remove()">':'')+'<em>👩‍🏫</em></span>'+
       '<div><span class="yclass__lb"><span class="zh">你的老师</span><span class="en">Your teacher</span></span><b>'+tname(T)+'</b>'+
@@ -2706,7 +2819,7 @@ window.__openTimetable=openTimetable;
       chips=document.getElementById('faqChips'), end=document.getElementById('faqEnd');
 
   var lvFrom=parseInt(QP&&QP.get('from'),10); if(isNaN(lvFrom))lvFrom=-1;
-  var picked=(function(){var v=(QP&&QP.get('p'))||'';return v.split(',').map(function(x){return parseInt(x,10);}).filter(function(x){return !isNaN(x)&&x>=0&&x<4;});})();
+  var picked=(function(){var v=(QP&&QP.get('p'))||'';return v.split(',').map(function(x){return parseInt(x,10);}).filter(function(x){return !isNaN(x)&&x>=0&&x<6;});})();
   var advName=(typeof ADV!=='undefined'&&ADV&&ADV.name)?ADV.name:'';
 
   /* 顾问勾的痛点 → 顾虑标签 */
