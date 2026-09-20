@@ -1163,6 +1163,27 @@ footer{padding:36px 0 46px;text-align:center;font-size:12.5px;color:var(--mut)}
 @media (prefers-reduced-transparency:reduce){
   *{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 }
+
+/* §10 — no blue tap flash on touch */
+button,[role="button"],a,.vcard,.jvid,.jstep,.qa__q,.faqchip,.jstage__map{-webkit-tap-highlight-color:transparent}
+/* §1 — elements that already carry a transform answer by dimming instead of scaling */
+.cface.is-pressed,.ccentre.is-pressed,.phone__sound.is-pressed,.proof.is-pressed,
+.cface:active,.ccentre:active,.phone__sound:active,.proof:active{
+  filter:brightness(.96);transition:filter 90ms ease-out;
+}
+/* §10 — the main buttons reach 44px too */
+.btn{position:relative}
+.btn::after{content:"";position:absolute;inset:-6px 0;border-radius:inherit}
+/* §12 — content meets the glass top bar through a fade, not a hard line */
+.topbar::after{
+  content:"";position:absolute;left:0;right:0;top:100%;height:12px;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(243,247,252,.8),rgba(243,247,252,0));
+}
+/* §14 — increased contrast: near-solid surfaces with defined borders */
+@media (prefers-contrast:more){
+  .topbar{background:rgba(243,247,252,.98)}
+  .btn,.faqchip,.langbtn{border:1px solid currentColor}
+}
 </style>
 </head>
 <body>
@@ -3149,7 +3170,7 @@ window.__openTimetable=openTimetable;
 <script id="press-feedback">
 (function(){
   /* Safari only gives :active to buttons and links, so mirror the press state */
-  var SEL='.btn,.langbtn,.faqchip,.jstage__map,.vcard,.jvid,.jstep,.qa__q';
+  var SEL='.btn,.langbtn,.faqchip,.jstage__map,.vcard,.jvid,.jstep,.qa__q,.cface,.ccentre,.phone__sound,.proof';
   var CTRL='button,[role="button"],a,input,select,textarea';
   var cur=null;
   function clear(){ if(cur){ cur.classList.remove('is-pressed'); cur=null; } }
