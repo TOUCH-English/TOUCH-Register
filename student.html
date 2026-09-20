@@ -3160,7 +3160,7 @@ window.__openTimetable=openTimetable;
     if(ctrl && ctrl!==el && el.contains(ctrl)) return;
     clear(); cur=el; el.classList.add('is-pressed');
   },true);
-  ['pointerup','pointercancel','pointerleave','dragstart','blur','scroll'].forEach(function(ev){
+  ['pointerup','pointercancel','pointerleave','dragstart','blur'].forEach(function(ev){
     window.addEventListener(ev,clear,true);
   });
   document.addEventListener('visibilitychange',clear);
