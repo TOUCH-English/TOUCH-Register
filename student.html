@@ -1227,7 +1227,7 @@ html.is-locked,html.is-locked body{overflow:hidden}
 .story__lv--3{background:#E8472B}.story__sk--3{color:#E8472B}
 .story__lv--offer{background:rgba(21,53,123,.08);color:var(--ink)}
 .story__say{margin:6px 0 0;font-size:13.5px;line-height:1.6;color:var(--ink2)}
-/* stories: one large, the rest swipe sideways on a phone */
+/* stories: one swipeable row on a phone */
 .srail{display:contents}
 @media (max-width:640px){
   .sgrid{display:block;margin-top:28px}
@@ -2321,8 +2321,8 @@ io.observe(er);})();
           (s.say?'<p class="story__say">'+bi(s.say)+'</p>':'')+'</div>':'')+
         '</div>';
     });
-    /* first story stays large; on phones the rest become a swipeable row (desktop: .srail is display:contents) */
-    grid.innerHTML=(cards[0]||'')+(cards.length>1?'<div class="srail">'+cards.slice(1).join('')+'</div>':'');
+    /* on phones every story sits in one swipeable row; the large player only appears once one is tapped (desktop: .srail is display:contents) */
+    grid.innerHTML='<div class="srail">'+cards.join('')+'</div>';
     buildCube();
   }
   render();
