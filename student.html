@@ -1198,6 +1198,27 @@ html.is-locked,html.is-locked body{overflow:hidden}
 .rv.on{transform:none}
 .rv.d1{transition-delay:.04s}.rv.d2{transition-delay:.08s}.rv.d3{transition-delay:.12s}.rv.d4{transition-delay:.16s}
 @media(prefers-reduced-motion:reduce){.rv{transform:none}}
+
+/* §7/§9 — on a phone, sheets rise from the bottom edge and can be swiped away */
+@media (max-width:560px){
+  .tpop,.tt-modal,.ccmodal,.cmod{align-items:flex-end;padding:0}
+  .tpop__card,.tt-modal__card,.ccmodal__card,.cmod__box{width:100%;max-width:none;max-height:88vh;border-radius:22px 22px 0 0;padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
+  .tpop__card,.tt-modal__card,.ccmodal__card,.cmod__box{border-left:0;border-right:0}
+  .tpop__card::before,.tt-modal__card::before,.ccmodal__card::before,.cmod__box::before{content:"";display:block;position:sticky;top:0;z-index:4;width:38px;height:5px;border-radius:3px;background:rgba(21,53,123,.22);margin:-16px auto 16px}
+  .tpop__card{transform:translateY(100%);transition:transform .34s cubic-bezier(.2,.9,.3,1)}
+  .tt-modal__card{transform:translateY(100%);transition:transform .34s cubic-bezier(.2,.9,.3,1);background:#FBFCFE;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .ccmodal__card,.cmod__box{animation:mdlSheet .34s cubic-bezier(.2,.9,.3,1) both}
+}
+@keyframes mdlSheet{from{transform:translateY(100%)}}
+/* §2 — the learner video rows drift, but a finger can stop and drag them */
+.vmarquee.vmq-drag .vmq{overflow-x:auto;scrollbar-width:none;overscroll-behavior-x:contain}
+.vmarquee.vmq-drag .vmq::-webkit-scrollbar{display:none}
+.vmarquee.vmq-drag .vmq__track{animation:none;will-change:auto}
+/* FAQ — a quicker close than open, answer text settles in after the height */
+.qa__a{transition:max-height .32s cubic-bezier(.2,.8,.2,1)}
+.qa:not(.open) .qa__a{transition-duration:.24s}
+.qa__a p{opacity:0;transition:opacity .18s ease}
+.qa.open .qa__a p{opacity:1;transition:opacity .24s ease .06s}
 </style>
 </head>
 <body>
@@ -2362,7 +2383,8 @@ document.addEventListener('click',function(e){
   var q=e.target.closest&&e.target.closest('.qa__q'); if(!q)return;
   var qa=q.parentNode, a=qa.querySelector('.qa__a'); if(!a)return;
   var open=qa.classList.toggle('open');
-  a.style.maxHeight=open?(a.scrollHeight+'px'):0;
+  if(open){ a.style.maxHeight=a.scrollHeight+'px'; }
+  else { if(a.style.maxHeight==='none'){ a.style.maxHeight=a.scrollHeight+'px'; void a.offsetHeight; } a.style.maxHeight='0px'; }
 });
 
 document.getElementById('yr').textContent=new Date().getFullYear();
@@ -3208,6 +3230,113 @@ window.__openTimetable=openTimetable;
   function sync(){ root.classList.toggle('is-locked', b.classList.contains('vlb-open') || !!document.getElementById('ttModal')); }
   new MutationObserver(sync).observe(b,{attributes:true,attributeFilter:['class'],childList:true});
   sync();
+})();
+</script>
+<script id="sheets-and-strips">
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function project(v){ var r=.998; return (v/1000)*r/(1-r); }
+  function rubber(o,d){ var c=.55; return (o*d*c)/(d+c*Math.abs(o)); }
+  /* critically damped spring, Apple's damping 1.0 / response .35 */
+  function spring(from,to,vel,onFrame,done){
+    if(reduce){ onFrame(to); done&&done(); return; }
+    var y=from, v=vel||0, k=Math.pow(2*Math.PI/.35,2), c=4*Math.PI/.35, last=performance.now();
+    (function step(now){
+      var dt=Math.min(.032,(now-last)/1000); last=now;
+      for(var i=0;i<4;i++){ var a=-k*(y-to)-c*v; v+=a*dt/4; y+=v*dt/4; }
+      if(Math.abs(y-to)<.5&&Math.abs(v)<5){ onFrame(to); done&&done(); return; }
+      onFrame(y); requestAnimationFrame(step);
+    })(last);
+  }
+
+  /* ---- swipe-down-to-close sheets (phone width) ---- */
+  var mq=matchMedia('(max-width:560px)');
+  var MAP=[['.tpop__card','#tpopX','.tpop__bg'],['.tt-modal__card','[data-ttx]','.tt-modal__bg'],['.ccmodal__card','#ccModalX',''],['.cmod__box','#cmodX','']];
+  var d=null;
+  function paint(y){ d.card.style.transform='translateY('+y+'px)'; if(d.bg)d.bg.style.opacity=Math.max(0,1-y/d.H); }
+  function reset(card,bg){ card.style.transform='';card.style.transition=''; if(bg)bg.style.opacity=''; }
+  document.addEventListener('touchstart',function(e){
+    d=null; if(!mq.matches||e.touches.length!==1||!e.target.closest)return;
+    for(var i=0;i<MAP.length;i++){
+      var card=e.target.closest(MAP[i][0]); if(!card)continue;
+      var t=e.touches[0];
+      d={card:card,x:MAP[i][1],bg:MAP[i][2]?card.parentNode.querySelector(MAP[i][2]):null,
+         x0:t.clientX,y0:t.clientY,active:false,hist:[]};
+      return;
+    }
+  },{passive:true});
+  document.addEventListener('touchmove',function(e){
+    if(!d)return; var t=e.touches[0], dx=t.clientX-d.x0, dy=t.clientY-d.y0;
+    if(!d.active){
+      if(Math.abs(dx)<8&&Math.abs(dy)<8)return;                         /* hysteresis */
+      if(Math.abs(dx)>Math.abs(dy)||dy<0||d.card.scrollTop>0){ d=null; return; } /* sideways or content scroll wins */
+      d.active=true; d.start=t.clientY; d.H=d.card.offsetHeight; d.card.style.transition='none';
+    }
+    e.preventDefault();
+    var o=t.clientY-d.start; paint(o<0?-rubber(-o,d.H):o);
+    var now=performance.now(); d.hist.push({t:now,y:t.clientY});
+    while(d.hist.length>2&&now-d.hist[0].t>100)d.hist.shift();
+  },{passive:false});
+  function finish(){
+    if(!d||!d.active){ d=null; return; }
+    var s=d, h=s.hist, a=h[0], b=h[h.length-1], dt=a&&b?(b.t-a.t)/1000:0;
+    var vel=dt>0?(b.y-a.y)/dt:0, y=parseFloat((s.card.style.transform.match(/-?[\d.]+/)||[0])[0]);
+    d=null;
+    var frame=function(v){ var keep=d; d=s; paint(v); d=keep; };
+    if(y+project(vel)>s.H*.4){
+      spring(y,s.H,vel,frame,function(){
+        var x=s.card.parentNode&&s.card.parentNode.querySelector(s.x); if(x)x.click();
+        setTimeout(function(){ reset(s.card,s.bg); },320);
+      });
+    } else {
+      spring(y,0,vel,frame,function(){ reset(s.card,s.bg); });
+    }
+  }
+  document.addEventListener('touchend',finish,{passive:true});
+  document.addEventListener('touchcancel',finish,{passive:true});
+
+  /* ---- learner video rows: drift on scrollLeft so a finger can grab them ---- */
+  var sec=document.querySelector('.vmarquee');
+  var rows=sec?[].slice.call(sec.querySelectorAll('.vmq')):[];
+  if(rows.length&&rows[0].querySelector('.vcard')){
+    sec.classList.add('vmq-drag');
+    var R=rows.map(function(el){
+      var tr=el.querySelector('.vmq__track');
+      return {el:el,tr:tr,dur:parseFloat(tr.style.animationDuration)||60,dir:tr.classList.contains('vmq__track--right')?-1:1,pos:null,set:-1,held:false,resume:0};
+    });
+    R.forEach(function(r){
+      function hold(){ r.held=true; r.resume=0; }
+      function let_(){ if(r.held){ r.held=false; r.resume=performance.now()+3000; } }
+      r.el.addEventListener('touchstart',hold,{passive:true});
+      r.el.addEventListener('pointerdown',function(e){ if(e.pointerType!=='touch')hold(); });
+      ['touchend','touchcancel','pointerup','pointercancel','mouseleave'].forEach(function(ev){ r.el.addEventListener(ev,let_,{passive:true}); });
+      r.el.addEventListener('wheel',function(){ r.resume=performance.now()+3000; },{passive:true});
+      r.el.addEventListener('scroll',function(){
+        if(Math.abs(r.el.scrollLeft-r.set)>1.5){ r.pos=r.el.scrollLeft; if(!r.held)r.resume=performance.now()+3000; }
+      },{passive:true});
+    });
+    var last=0;
+    (function tick(now){
+      var dt=last?Math.min(.05,(now-last)/1000):0; last=now;
+      var paused=reduce||document.hidden||sec.classList.contains('is-off')||document.body.classList.contains('vlb-open');
+      if(!paused) R.forEach(function(r){
+        var h=r.tr.scrollWidth/2; if(!h)return;
+        if(r.pos===null)r.pos=r.dir<0?h:0;
+        if(r.held||now<r.resume)return;
+        r.resume=0;
+        r.pos+=r.dir*(h/r.dur)*dt;
+        if(r.pos<=0)r.pos+=h; else if(r.pos>=h)r.pos-=h;
+        r.el.scrollLeft=r.pos; r.set=r.el.scrollLeft;
+      });
+      requestAnimationFrame(tick);
+    })(0);
+  }
+
+  /* ---- FAQ: let an open answer grow if its text changes (language switch) ---- */
+  document.addEventListener('transitionend',function(e){
+    var a=e.target; if(e.propertyName!=='max-height'||!a.classList||!a.classList.contains('qa__a'))return;
+    if(a.parentNode.classList.contains('open'))a.style.maxHeight='none';
+  });
 })();
 </script>
 </body>
