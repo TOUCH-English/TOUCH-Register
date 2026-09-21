@@ -1214,6 +1214,22 @@ html.is-locked,html.is-locked body{overflow:hidden}
 .vmarquee.vmq-drag .vmq{overflow-x:auto;scrollbar-width:none;overscroll-behavior-x:contain}
 .vmarquee.vmq-drag .vmq::-webkit-scrollbar{display:none}
 .vmarquee.vmq-drag .vmq__track{animation:none;will-change:auto}
+/* §10 — one close button for every sheet: same circle, 44px to the finger */
+.tpop__x,.tt-modal__x,.ccmodal__x,.cmod__x{width:36px;height:36px;padding:0;border:0;border-radius:50%;background:rgba(21,53,123,.07);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;line-height:1;transition:transform .12s ease-out,background-color .15s}
+.tpop__x:hover,.tt-modal__x:hover,.ccmodal__x:hover,.cmod__x:hover{background:rgba(21,53,123,.12)}
+.tpop__x:active,.tt-modal__x:active,.ccmodal__x:active,.cmod__x:active,.vlb__x:active{transform:scale(.92)}
+.tpop__x::after,.tt-modal__x::after,.ccmodal__x::after,.cmod__x::after,.vlb__x::after{content:"";position:absolute;inset:-4px;border-radius:50%}
+/* §11 — cards animate only what they actually change (no layout work on press or hover) */
+.btn,.vcard,.jvid,.story,.ccard,.proof,.tcard,.ccentre,.lcard,.pcard,.plan,.yclass__t,.cent,.adv-note{transition-property:transform,opacity,filter,box-shadow,border-color,background-color,color}
+/* comparison table on a phone: the row labels stay put, the columns settle on an edge */
+@media (max-width:640px){
+  .cmpwrap{scroll-snap-type:x proximity;overscroll-behavior-x:contain}
+  table.cmp{overflow:visible}   /* a clipping table would become the sticky container; .cmpwrap clips the corners */
+  .cmp th:not(:first-child),.cmp td:not(:first-child){scroll-snap-align:start}
+  .cmp td:first-child,.cmp th:first-child{position:sticky;left:0;z-index:2;background:#F7F9FD;box-shadow:8px 0 12px -10px rgba(21,53,123,.35)}
+  .cmp thead th:first-child{background:#EEF2F8}
+}
 /* story captions: who they are, their level, one line of their story */
 .story__info{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:14px 16px 16px;text-align:left}
 .story--v:has(.story__info) .story__th{border-radius:0}
@@ -3385,6 +3401,14 @@ window.__openTimetable=openTimetable;
     var a=e.target; if(e.propertyName!=='max-height'||!a.classList||!a.classList.contains('qa__a'))return;
     if(a.parentNode.classList.contains('open'))a.style.maxHeight='none';
   });
+})();
+</script>
+<script id="cmp-snap">
+(function(){
+  /* columns snap just right of the pinned label column */
+  var w=document.querySelector('.cmpwrap'), c=w&&w.querySelector('.cmp th:first-child'); if(!c)return;
+  function pad(){ w.style.scrollPaddingLeft=c.offsetWidth+'px'; }
+  pad(); addEventListener('resize',pad);
 })();
 </script>
 </body>
