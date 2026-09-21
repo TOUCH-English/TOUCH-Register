@@ -1214,6 +1214,15 @@ html.is-locked,html.is-locked body{overflow:hidden}
 .vmarquee.vmq-drag .vmq{overflow-x:auto;scrollbar-width:none;overscroll-behavior-x:contain}
 .vmarquee.vmq-drag .vmq::-webkit-scrollbar{display:none}
 .vmarquee.vmq-drag .vmq__track{animation:none;will-change:auto}
+/* stories: one large, the rest swipe sideways on a phone */
+.srail{display:contents}
+@media (max-width:640px){
+  .sgrid{display:block;margin-top:28px}
+  .srail{display:flex;gap:12px;margin:12px -22px 0;padding:0 22px 6px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:22px;scrollbar-width:none;overscroll-behavior-x:contain}
+  .srail::-webkit-scrollbar{display:none}
+  .srail>.story{flex:0 0 74%;scroll-snap-align:start}
+  .srail>.story:hover{transform:none}
+}
 /* FAQ — a quicker close than open, answer text settles in after the height */
 .qa__a{transition:max-height .32s cubic-bezier(.2,.8,.2,1)}
 .qa:not(.open) .qa__a{transition-duration:.24s}
@@ -2270,11 +2279,13 @@ io.observe(er);})();
     }).join('');
   }
   function render(){
-    grid.innerHTML=STORIES.map(function(s,i){
+    var cards=STORIES.map(function(s,i){
       return '<div class="story card story--v" data-i="'+i+'">'+
         '<div class="story__th"><img loading="lazy" src="https://i.ytimg.com/vi/'+esc(s.id)+'/hqdefault.jpg" alt=""><span class="story__pl"></span>'+
         '<span class="story__watch">\u25B6 <span class="zh">点击观看</span><span class="en">Watch</span></span></div></div>';
-    }).join('');
+    });
+    /* first story stays large; on phones the rest become a swipeable row (desktop: .srail is display:contents) */
+    grid.innerHTML=(cards[0]||'')+(cards.length>1?'<div class="srail">'+cards.slice(1).join('')+'</div>':'');
     buildCube();
   }
   render();
