@@ -3328,6 +3328,20 @@ button,[role="button"],a,.vcard,.jvid,.jstep,.qa__q,.faqchip,.jstage__map{-webki
   .topbar{background:rgba(243,247,252,.98)}
   .btn,.faqchip,.langbtn{border:1px solid currentColor}
 }
+
+/* §3/§12 — modals: the page behind stays put, scrolling stays inside the sheet */
+html.is-locked,html.is-locked body{overflow:hidden}
+.tpop__card,.tt-modal__card,.ccmodal__card,.cmod__box,.advm__card,.tt-scroll{overscroll-behavior:contain}
+/* the video lightbox, 5C and profile sheets used to pop in with no transition */
+.vlb,.ccmodal,.cmod{animation:mdlFade .22s ease both}
+.vlb__box,.ccmodal__card,.cmod__box{animation:mdlRise .28s cubic-bezier(.2,.9,.3,1) both}
+@keyframes mdlFade{from{opacity:0}}
+@keyframes mdlRise{from{opacity:0;transform:translateY(14px) scale(.985)}}
+/* §1 — reveals keep up with a fast thumb: shorter travel, shorter time */
+.rv{transform:translateY(12px);transition:opacity .45s ease,transform .5s cubic-bezier(.22,.8,.3,1)}
+.rv.on{transform:none}
+.rv.d1{transition-delay:.04s}.rv.d2{transition-delay:.08s}.rv.d3{transition-delay:.12s}.rv.d4{transition-delay:.16s}
+@media(prefers-reduced-motion:reduce){.rv{transform:none}}
 </style>
 <div id="pvTag">PREVIEW · 预览版</div>
 <script id="press-feedback">
@@ -3348,6 +3362,15 @@ button,[role="button"],a,.vcard,.jvid,.jstep,.qa__q,.faqchip,.jstage__map{-webki
     window.addEventListener(ev,clear,true);
   });
   document.addEventListener('visibilitychange',clear);
+})();
+</script>
+<script id="scroll-lock">
+(function(){
+  /* every sheet sets body.vlb-open; the timetable adds #ttModal instead */
+  var root=document.documentElement, b=document.body;
+  function sync(){ root.classList.toggle('is-locked', b.classList.contains('vlb-open') || !!document.getElementById('ttModal')); }
+  new MutationObserver(sync).observe(b,{attributes:true,attributeFilter:['class'],childList:true});
+  sync();
 })();
 </script>
 </body>
