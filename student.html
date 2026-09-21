@@ -1214,6 +1214,19 @@ html.is-locked,html.is-locked body{overflow:hidden}
 .vmarquee.vmq-drag .vmq{overflow-x:auto;scrollbar-width:none;overscroll-behavior-x:contain}
 .vmarquee.vmq-drag .vmq::-webkit-scrollbar{display:none}
 .vmarquee.vmq-drag .vmq__track{animation:none;will-change:auto}
+/* story captions: who they are, their level, one line of their story */
+.story__info{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:14px 16px 16px;text-align:left}
+.story--v:has(.story__info) .story__th{border-radius:0}
+.story__nm{font-size:16px;font-weight:800;color:var(--ink);line-height:1.3}
+.story__role{font-size:12.5px;font-weight:600;color:var(--mut);line-height:1.45}
+.story__tags{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-top:6px}
+.story__lv{font-size:11.5px;font-weight:800;border-radius:999px;padding:3px 10px;color:#fff;background:#2F7BE0;white-space:nowrap}
+.story__sk{font-size:12px;font-weight:800;color:#2F7BE0}
+.story__lv--1{background:#2E9D5B}.story__sk--1{color:#2E9D5B}
+.story__lv--2{background:#2F7BE0}.story__sk--2{color:#2F7BE0}
+.story__lv--3{background:#E8472B}.story__sk--3{color:#E8472B}
+.story__lv--offer{background:rgba(21,53,123,.08);color:var(--ink)}
+.story__say{margin:6px 0 0;font-size:13.5px;line-height:1.6;color:var(--ink2)}
 /* stories: one large, the rest swipe sideways on a phone */
 .srail{display:contents}
 @media (max-width:640px){
@@ -2245,13 +2258,32 @@ io.observe(er);})();
 
 /* ============ Stories (YouTube standard: grid + play + advisor panel) ============ */
 (function(){
+  /* who is in each video — names and roles as shown in the video / its YouTube description */
   var DEFAULTS=[
-    {id:'fynOoEpUtEQ'},{id:'hEju5LBQ6v4'},{id:'iuqZKTf44bQ'},{id:'qYAzzpC083Y'},
-    {id:'8AsA0yF385s'},{id:'GmtQmlFOioo'}
+    {id:'fynOoEpUtEQ',name:'Johnson Tan Chong Seng',role:{zh:'会计师 \u00b7 新加坡工作',en:'Accountant \u00b7 Singapore'},
+     tag:{t:'offer',zh:'拿到国际公司 offer',en:'International job offer'},
+     say:{zh:'连续 4\u20135 场全英文面试，从紧张到享受，拿下国际公司的 offer。',en:'Four to five interviews in English \u2014 from nervous to enjoying it \u2014 and an international job offer.'}},
+    {id:'hEju5LBQ6v4',name:'Belinda',role:{zh:'专业主持人 \u00b7 入行 16 年',en:'Professional MC \u00b7 16 years'},
+     tag:{t:'3',zh:'Level 3',en:'Level 3'},skill:'Convincing Skills',
+     say:{zh:'用英文主持 Tesla Model Y 发表，让 Mr. Fong 当场惊艳。',en:'Presented the Tesla Model Y launch in English and impressed Mr. Fong on the spot.'}},
+    {id:'iuqZKTf44bQ',name:'Mr. Shawn',role:{zh:'仓库助理 \u00b7 新加坡工作',en:'Warehouse Assistant \u00b7 Singapore'},
+     tag:{t:'2',zh:'Level 1 \u2192 Level 2',en:'Level 1 \u2192 Level 2'},skill:'Conveying Skills',
+     say:{zh:'以前想法讲不清楚，现在能向瑞士老板清楚表达。',en:'Now explains his ideas clearly to his Swiss boss.'}},
+    {id:'qYAzzpC083Y',name:'Cheah Wei Lun',role:{zh:'Prudential 资深保险顾问',en:'Senior Insurance Consultant, Prudential'},
+     tag:{t:'2',zh:'Level 2',en:'Level 2'},skill:'Conveying Skills',
+     say:{zh:'原本只做中文市场，英文让他走出圈子，接触更多行业的客户。',en:'Once limited to the Chinese-speaking market \u2014 English opened doors to new industries.'}},
+    {id:'8AsA0yF385s',name:'Sally',role:{zh:'估价师 Quantity Surveyor',en:'Quantity Surveyor'},
+     tag:{t:'3',zh:'Level 3',en:'Level 3'},skill:'Best Student',
+     say:{zh:'曾被老板点名说英文不好，现在是 Level 3 最佳学员。',en:'Once told by her boss her English wasn\u2019t good \u2014 now a Level 3 Best Student.'}},
+    {id:'GmtQmlFOioo',name:'Mr. Wei Leong',role:{zh:'上班族 \u00b7 新加坡工作',en:'Working adult \u00b7 Singapore'},
+     tag:{t:'3',zh:'Level 1 \u2192 Level 3',en:'Level 1 \u2192 Level 3'},skill:'5C Transformation',
+     say:{zh:'老板看见他的英文进步，给了他升职。',en:'His boss noticed his progress and promoted him.'}}
   ];
   var KEY='te_sales_stories_v4';
   function load(){try{var v=JSON.parse(localStorage.getItem(KEY));if(Array.isArray(v)&&v.length)return v;}catch(e){}return JSON.parse(JSON.stringify(DEFAULTS));}
   var STORIES=load();
+  /* lists saved by an advisor before the cards had captions: borrow the caption by video id */
+  STORIES.forEach(function(s){ if(s.name)return; var d=DEFAULTS.filter(function(x){return x.id===s.id;})[0]; if(d){ for(var k in d) if(!(k in s)) s[k]=d[k]; } });
   var grid=document.getElementById('sgrid'), player=document.getElementById('splayer'), pv=document.getElementById('spVid'), ps=document.getElementById('spSum');
 
   function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');}
@@ -2282,7 +2314,12 @@ io.observe(er);})();
     var cards=STORIES.map(function(s,i){
       return '<div class="story card story--v" data-i="'+i+'">'+
         '<div class="story__th"><img loading="lazy" src="https://i.ytimg.com/vi/'+esc(s.id)+'/hqdefault.jpg" alt=""><span class="story__pl"></span>'+
-        '<span class="story__watch">\u25B6 <span class="zh">点击观看</span><span class="en">Watch</span></span></div></div>';
+        '<span class="story__watch">\u25B6 <span class="zh">点击观看</span><span class="en">Watch</span></span></div>'+
+        (s.name?'<div class="story__info"><b class="story__nm">'+esc(s.name)+'</b>'+
+          (s.role?'<span class="story__role">'+bi(s.role)+'</span>':'')+
+          (s.tag?'<span class="story__tags"><span class="story__lv story__lv--'+esc(s.tag.t)+'">'+bi(s.tag)+'</span>'+(s.skill?'<span class="story__sk story__sk--'+esc(s.tag.t)+'">'+esc(s.skill)+'</span>':'')+'</span>':'')+
+          (s.say?'<p class="story__say">'+bi(s.say)+'</p>':'')+'</div>':'')+
+        '</div>';
     });
     /* first story stays large; on phones the rest become a swipeable row (desktop: .srail is display:contents) */
     grid.innerHTML=(cards[0]||'')+(cards.length>1?'<div class="srail">'+cards.slice(1).join('')+'</div>':'');
