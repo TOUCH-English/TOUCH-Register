@@ -1311,7 +1311,7 @@ footer{padding:36px 0 46px;text-align:center;font-size:12.5px;color:var(--mut)}
 </section>
 
 <!-- JOURNEY -->
-<section id="journey" class="jour">
+<section id="route" class="jour">
   <div class="wrap">
     <div class="center rv">
       <span class="eyebrow"><span class="zh">你的学习旅程</span><span class="en">Your journey</span></span>
@@ -1993,7 +1993,7 @@ var CONFIG={
   JOURNEY_DEFAULT_FROM:1,
   JOURNEY_DEFAULT_TO:3,
   LEVELS:[
-    {key:"P1", tag:"Level 0", skill:"Copying", color:"#EBB12A",
+    {key:"P1", tag:"Level P1", skill:"Copying", color:"#EBB12A",
      now:"英文单词都认不全，别人说什么常常听不懂",
      gain:["听懂简单的日常指令","做基本的自我介绍","给出简单的回答"],
      future:"在店里、在职场，简单的英文你听得懂、也答得出来",
@@ -2119,11 +2119,11 @@ io.observe(er);})();
   lit.style.strokeDasharray=L; lit.style.strokeDashoffset=L;
   var NODES=[
     {t:.02, en:'Placement Test', zh:'免费定位测试'},
-    {t:.16, en:'Level P1',       zh:'零基础起步'},
-    {t:.31, en:'Level 1 · Copy', zh:'模仿打底'},
-    {t:.46, en:'Level 2 · Construct', zh:'组句成段'},
-    {t:.61, en:'Level 3 · Convey', zh:'清楚表达'},
-    {t:.76, en:'Level 4 · Convince', zh:'有说服力'},
+    {t:.16, en:'Level P1 · Copy', zh:'模仿打底'},
+    {t:.31, en:'Level 1 · Construct', zh:'组句成段'},
+    {t:.46, en:'Level 2 · Convey', zh:'清楚表达'},
+    {t:.61, en:'Level 3 · Convince', zh:'有说服力'},
+    {t:.76, en:'Level 4 · Captivate', zh:'影响他人'},
     {t:.89, en:'Exam & Report', zh:'考核与报告'},
     {t:.995,en:'VISIBLE',       zh:'被看见', fin:1}
   ];
@@ -2519,6 +2519,8 @@ var PSTU=(function(){
   /* 顾问勾选的痛点（?p=0,1）+ 顾问的话（?note=） */
   var PICKED=(function(){var v=(q&&q.get('p'))||'';return v.split(',').map(function(x){return parseInt(x,10);}).filter(function(x){return !isNaN(x)&&x>=0&&x<4;});})();
   var NOTE=(function(){var v=(q&&q.get('note'))||'';return v.trim().slice(0,220);})();
+  /* 顾问写的「个人分析 / 个性化建议」（?ca= / ?cs=）— 表单上写着学生页会看到 */
+  var CA=((q&&q.get('ca'))||'').trim().slice(0,200), CS=((q&&q.get('cs'))||'').trim().slice(0,200);
   function painsFor(i){
     var isEN=document.body.classList.contains('te-en');
     var src=(isEN?CONFIG.LEVEL_PAINS_EN:CONFIG.LEVEL_PAINS_ZH)||[];
@@ -2527,6 +2529,14 @@ var PSTU=(function(){
     if(!items.length)return '';
     return '<div class="jsaid"><span class="jsaid__lb">✓ <span class="zh">你提到的卡点</span><span class="en">What you told us</span></span><ul>'+
       items.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ul></div>';
+  }
+  function advBlock(){
+    if(!CA&&!CS)return '';
+    var who=esc(advName||'');
+    return '<div class="jadv">'+
+      (CA?'<div class="jadv__row"><span class="jadv__lb"><span class="zh">'+(who?who+' 的观察':'顾问的观察')+'</span><span class="en">'+(who?'What '+who+' noticed':'What we noticed')+'</span></span><p>'+esc(CA)+'</p></div>':'')+
+      (CS?'<div class="jadv__row"><span class="jadv__lb"><span class="zh">给你的建议</span><span class="en">Suggested for you</span></span><p>'+esc(CS)+'</p></div>':'')+
+    '</div>';
   }
   function noteBlock(){
     if(!NOTE)return '';
@@ -2540,6 +2550,7 @@ var PSTU=(function(){
       '<span class="jstage__ph" style="background:'+l.color+'">'+ph[0]+' '+esc(ph[1])+' · '+esc(l.tag)+'</span>'+
       '<p class="jstage__now"><span class="em">现在：</span>'+esc(l.now)+'</p>'+
       (i===from?painsFor(i):'')+
+      (i===from?advBlock():'')+
       (i===from?noteBlock():'')+
       gainList(l)+
       '<div class="jstage__future"><b>'+(goal?'这就是未来的你 → ':'这一步之后 → ')+'</b>'+esc(l.future)+'</div>'+
@@ -3401,6 +3412,22 @@ html.is-locked,html.is-locked body{overflow:hidden}
   .cmp td:first-child,.cmp th:first-child{position:sticky;left:0;z-index:2;background:#F7F9FD;box-shadow:8px 0 12px -10px rgba(21,53,123,.35)}
   .cmp thead th:first-child{background:#EEF2F8}
 }
+/* the advisor's own analysis + suggestion, in the "Today" card */
+.jadv{margin-top:14px;padding:13px 15px;border-radius:14px;background:rgba(31,120,210,.06);border:1px solid rgba(31,120,210,.16);display:flex;flex-direction:column;gap:11px}
+.jadv__lb{display:block;font-size:11.5px;font-weight:800;letter-spacing:.03em;color:var(--blue);margin-bottom:4px}
+.jadv p{margin:0;font-size:13.5px;line-height:1.65;font-weight:600;color:var(--ink);white-space:pre-line}
+/* level videos: two small thumbnails side by side, even on a phone; tap to play */
+@media (max-width:560px){
+  .jstage__vids{grid-template-columns:1fr 1fr;gap:10px}
+  .jstage__vids .jvid{border-radius:10px}
+  .jstage__vids .jvid__pl{width:30px;height:30px}
+  .jstage__vids .jvid__pl::before{border-width:5px 0 5px 8px}
+  .jstage__vids .jvcap{font-size:11px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+}
+/* tapping a thumbnail: the player rises out of it */
+.vlb.from-thumb .vlb__box{animation:vlbFrom .42s cubic-bezier(.2,.9,.3,1) both}
+@keyframes vlbFrom{from{opacity:.5;transform:var(--from)}}
+@media (prefers-reduced-motion:reduce){.vlb.from-thumb .vlb__box{animation:mdlFade .2s ease both}}
 /* story captions: who they are, their level, one line of their story */
 .story__info{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:14px 16px 16px;text-align:left}
 .story--v:has(.story__info) .story__th{border-radius:0}
@@ -3564,6 +3591,26 @@ html.is-locked,html.is-locked body{overflow:hidden}
     var a=e.target; if(e.propertyName!=='max-height'||!a.classList||!a.classList.contains('qa__a'))return;
     if(a.parentNode.classList.contains('open'))a.style.maxHeight='none';
   });
+})();
+</script>
+<script id="vid-rise">
+(function(){
+  /* remember which thumbnail was tapped, then let the lightbox grow out of it */
+  var last=null;
+  document.addEventListener('click',function(e){ var t=e.target.closest&&e.target.closest('.jvid'); last=t?t.getBoundingClientRect():null; },true);
+  function wrap(){
+    var orig=window.__vlbOpen; if(!orig||orig.__rise) return !!orig;
+    var f=function(id){
+      orig(id);
+      var lb=document.getElementById('vlb'), box=lb&&lb.querySelector('.vlb__box'); if(!box||!last){ if(lb)lb.classList.remove('from-thumb'); return; }
+      var b=box.getBoundingClientRect(); if(!b.width) return;
+      var s=Math.max(.15,last.width/b.width), dx=(last.left+last.width/2)-(b.left+b.width/2), dy=(last.top+last.height/2)-(b.top+b.height/2);
+      lb.style.setProperty('--from','translate('+dx.toFixed(1)+'px,'+dy.toFixed(1)+'px) scale('+s.toFixed(3)+')');
+      lb.classList.remove('from-thumb'); void box.offsetWidth; lb.classList.add('from-thumb'); last=null;
+    };
+    f.__rise=1; window.__vlbOpen=f; return true;
+  }
+  if(!wrap()) document.addEventListener('DOMContentLoaded',wrap);
 })();
 </script>
 <script id="cmp-snap">
